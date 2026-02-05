@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Dhanu Computers | Bengaluru Since 2013</title>
+    <meta name="description" content="Learn about Dhanu Computers — technology chosen with clarity since 2013. Trusted laptop service and sales in Bengaluru.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --obsidian: #0A0E1A;
+            --charcoal: #1A1F2E;
+            --deep-slate: #252B3D;
+            --emerald-glow: #E05A00;
+            --emerald-soft: rgba(224, 90, 0, 0.15);
+            --gold-muted: #D4AF37;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--obsidian);
+            color: #E8EAF0;
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(224, 90, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-mark img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-mark span {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFF;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--emerald-glow);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--emerald-glow);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: #FFF;
+            margin-bottom: 1rem;
+        }
+
+        .story-section {
+            margin-bottom: 4rem;
+        }
+
+        .story-paragraph {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 1.8rem;
+        }
+
+        .story-paragraph.emphasis {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--gold-muted);
+            text-align: center;
+            padding: 2rem 0;
+            margin: 3rem 0;
+            border-top: 1px solid rgba(224, 90, 0, 0.2);
+            border-bottom: 1px solid rgba(224, 90, 0, 0.2);
+        }
+
+        .timeline {
+            margin: 4rem 0;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--emerald-glow), transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.4rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--emerald-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--emerald-glow);
+        }
+
+        .timeline-year {
+            font-family: var(--font-accent);
+            font-size: 0.9rem;
+            color: var(--emerald-glow);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .value-card {
+            background: rgba(26, 31, 46, 0.6);
+            border: 1px solid rgba(224, 90, 0, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            border-color: rgba(224, 90, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-family: var(--font-accent);
+            font-size: 1.2rem;
+            color: #FFF;
+            margin-bottom: 0.8rem;
+        }
+
+        .value-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--charcoal), var(--deep-slate));
+            border-radius: 12px;
+            margin-top: 4rem;
+        }
+
+        .contact-section h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FFF;
+        }
+
+        .contact-section p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background: var(--emerald-glow);
+            color: var(--obsidian);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(224, 90, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.4rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-mark">
+                <img src="images/logo.png" alt="Dhanu Computers Logo">
+                <span>Dhanu Computers</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="stock.html">Stock</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-subtitle">Our Story</div>
+            <h1 class="page-title">About Dhanu Computers</h1>
+        </div>
+
+        <section class="story-section">
+            <p class="story-paragraph">
+                Dhanu Computers began in 2013 with a simple belief: technology should serve people clearly, not confuse them. What started as a small service center in Bengaluru has grown into a trusted resource for individuals and businesses who value reliability over hype.
+            </p>
+
+            <p class="story-paragraph">
+                We don't chase trends. We don't oversell. We guide people toward systems that fit their actual work — whether that's a refurbished laptop for a student, a precision repair for a professional, or a long-term relationship with a growing business.
+            </p>
+
+            <p class="story-paragraph emphasis">
+                "We believe technology should feel aligned — not confusing, not excessive, not wrong for your purpose."
+            </p>
+
+            <p class="story-paragraph">
+                Over the years, we've restored hundreds of systems, advised countless buyers, and built relationships that extend beyond single transactions. Our reputation is word-of-mouth driven, because the work speaks for itself.
+            </p>
+
+            <p class="story-paragraph">
+                Most of our clients return. Some for upgrades. Some for repairs. Some because they trust our advice when making their next decision. That continuity is what defines us.
+            </p>
+        </section>
+
+        <section class="timeline">
+            <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 3rem; color: #FFF;">
+                The Journey
+            </h2>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2013</div>
+                <p class="timeline-content">
+                    Established in Bengaluru with a focus on honest laptop repair and sales. No false promises, no unnecessary upselling — just clear technical service.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2015-2017</div>
+                <p class="timeline-content">
+                    Expanded into refurbished laptop sales as clients sought reliable, affordable alternatives. Built relationships with corporate clients seeking bulk support.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2018-2020</div>
+                <p class="timeline-content">
+                    Refined precision repair capabilities — chip-level diagnostics, motherboard repair, data integrity. Reputation grew through referrals, not advertising.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2021-2023</div>
+                <p class="timeline-content">
+                    Established as a trusted name among students, professionals, and local businesses. Focused on long-term client relationships and sustained service quality.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024-Present</div>
+                <p class="timeline-content">
+                    Continuing with the same principle: technology chosen with clarity. Serving Bengaluru with integrity, technical expertise, and genuine guidance.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: #FFF;">
+                What Guides Us
+            </h2>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3 class="value-title">Clarity Over Noise</h3>
+                    <p class="value-description">
+                        We don't confuse you with jargon. We explain what matters, in plain language, so you can make informed decisions.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3 class="value-title">Long-term Relationships</h3>
+                    <p class="value-description">
+                        We're not interested in one-time transactions. We value clients who return, who trust us, who refer us to others.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔧</div>
+                    <h3 class="value-title">Technical Honesty</h3>
+                    <p class="value-description">
+                        If something can be repaired, we repair it. If a refurbished system serves you better than new, we say so.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⏳</div>
+                    <h3 class="value-title">Patience & Precision</h3>
+                    <p class="value-description">
+                        We don't rush. We diagnose carefully, repair thoroughly, and advise thoughtfully. Quality takes time.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🛡️</div>
+                    <h3 class="value-title">Data Integrity</h3>
+                    <p class="value-description">
+                        Your data is your work, your memories, your livelihood. We handle it with the seriousness it deserves.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📍</div>
+                    <h3 class="value-title">Local & Accessible</h3>
+                    <p class="value-description">
+                        Based in Bengaluru, serving the community directly. No distant call centers, no automated responses.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h3>Ready to Work Together?</h3>
+            <p>Whether you need guidance, repair, or a new system — we're here.</p>
+            <a href="https://wa.me/919591555095?text=Hi%20Dhanu%20Computers,%20I'm%20looking%20for%20guidance%20with:%0A1️⃣%20Choosing%20a%20laptop%0A2️⃣%20Repairing%20my%20system%0A3️⃣%20Improving%20performance%0A4️⃣%20Not%20sure%20—%20need%20advice" class="cta-button">
+                Start Conversation
+            </a>
+        </section>
+
+        <section style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(224, 90, 0, 0.1);">
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1.5rem; color: #FFF;">
+                Contact Information
+            </h3>
+            
+            <div style="display: grid; gap: 1rem; color: rgba(255, 255, 255, 0.7);">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem;">📱</span>
+                    <div>
+                        <strong style="color: #FFF; display: block; margin-bottom: 0.2rem;">WhatsApp</strong>
+                        <a href="https://wa.me/919591555095" style="color: var(--emerald-glow); text-decoration: none;">
+                            +91 95915 55095
+                        </a>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem;">📞</span>
+                    <div>
+                        <strong style="color: #FFF; display: block; margin-bottom: 0.2rem;">Phone</strong>
+                        <a href="tel:+919591555095" style="color: var(--emerald-glow); text-decoration: none;">
+                            +91 95915 55095
+                        </a>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem;">📍</span>
+                    <div>
+                        <strong style="color: #FFF; display: block; margin-bottom: 0.2rem;">Location</strong>
+                        Bengaluru, Karnataka
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem;">📷</span>
+                    <div>
+                        <strong style="color: #FFF; display: block; margin-bottom: 0.2rem;">Instagram</strong>
+                        <a href="https://www.instagram.com/dhanu_computers2013/" style="color: var(--emerald-glow); text-decoration: none;" target="_blank">
+                            @dhanu_computers2013
+                        </a>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem;">⏰</span>
+                    <div>
+                        <strong style="color: #FFF; display: block; margin-bottom: 0.2rem;">Hours</strong>
+                        Monday - Saturday: 10:00 AM - 8:00 PM<br>
+                        Sunday: Closed
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

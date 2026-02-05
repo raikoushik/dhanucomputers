@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights & Guidance — Dhanu Computers | Bengaluru</title>
+    <meta name="description" content="Technology insights, laptop buying guides, and expert advice from Dhanu Computers, Bengaluru.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --obsidian: #0A0E1A;
+            --charcoal: #1A1F2E;
+            --deep-slate: #252B3D;
+            --emerald-glow: #E05A00;
+            --emerald-soft: rgba(224, 90, 0, 0.15);
+            --gold-muted: #D4AF37;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--obsidian);
+            color: #E8EAF0;
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(224, 90, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-mark img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-mark span {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFF;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--emerald-glow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--emerald-glow);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: #FFF;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: rgba(26, 31, 46, 0.6);
+            border: 1px solid rgba(224, 90, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(224, 90, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(224, 90, 0, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--deep-slate), var(--charcoal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-category {
+            font-family: var(--font-accent);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--emerald-glow);
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #FFF;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .featured-article {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-bottom: 2rem;
+        }
+
+        .featured-article .blog-image {
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .featured-article .blog-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-article .blog-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article .blog-image {
+                min-height: 250px;
+            }
+
+            .featured-article .blog-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-mark">
+                <img src="images/logo.png" alt="Dhanu Computers Logo">
+                <span>Dhanu Computers</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="stock.html">Stock</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-subtitle">Knowledge & Guidance</div>
+            <h1 class="page-title">Insights</h1>
+            <p class="page-description">
+                Practical guidance on choosing, maintaining, and understanding laptop technology.
+            </p>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Featured Article -->
+            <article class="blog-card featured-article" data-href="blog/how-to-choose-laptop-2026.html">
+                <div class="blog-image">📖</div>
+                <div class="blog-content">
+                    <div class="blog-category">Buying Guide</div>
+                    <h2 class="blog-title">How to Choose the Right Laptop in 2026</h2>
+                    <p class="blog-excerpt">
+                        Not every expensive laptop is the right laptop. Understanding your workflow, budget constraints, and future needs will guide you to a system that serves you well for years — not one that becomes obsolete or excessive within months.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">
+                            <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Jan 15, 2026
+                        </span>
+                        <span class="blog-meta-item">
+                            <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            8 min read
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Regular Articles -->
+            <article class="blog-card" data-href="blog/ssd-upgrade-difference.html">
+                <div class="blog-image">⚡</div>
+                <div class="blog-content">
+                    <div class="blog-category">Performance</div>
+                    <h3 class="blog-title">Why SSD Upgrades Make the Most Difference</h3>
+                    <p class="blog-excerpt">
+                        If your laptop is slow, the first place to look isn't the processor — it's storage. Here's why.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">Jan 8, 2026</span>
+                        <span class="blog-meta-item">5 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-href="blog/laptop-repair-warning-signs.html">
+                <div class="blog-image">🔧</div>
+                <div class="blog-content">
+                    <div class="blog-category">Maintenance</div>
+                    <h3 class="blog-title">5 Signs Your Laptop Needs Professional Repair</h3>
+                    <p class="blog-excerpt">
+                        Ignoring early warning signs can turn a simple fix into an expensive replacement. Here's what to watch for.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">Jan 3, 2026</span>
+                        <span class="blog-meta-item">6 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">💼</div>
+                <div class="blog-content">
+                    <div class="blog-category">Business</div>
+                    <h3 class="blog-title">Refurbished vs. New: What Makes Sense for Your Business</h3>
+                    <p class="blog-excerpt">
+                        Budget constraints don't mean compromising on quality. Understanding the refurbished market can save thousands without sacrificing reliability.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">Dec 28, 2025</span>
+                        <span class="blog-meta-item">7 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">🛡️</div>
+                <div class="blog-content">
+                    <div class="blog-category">Security</div>
+                    <h3 class="blog-title">Data Safety During Laptop Repairs</h3>
+                    <p class="blog-excerpt">
+                        What happens to your data when you hand over your laptop for repair? Here's what you should know and ask.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">Dec 20, 2025</span>
+                        <span class="blog-meta-item">4 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">🎓</div>
+                <div class="blog-content">
+                    <div class="blog-category">Students</div>
+                    <h3 class="blog-title">Best Laptop Specs for Engineering Students in 2026</h3>
+                    <p class="blog-excerpt">
+                        From CAD software to coding environments, here's what engineering students actually need — not what marketing tells you.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">Dec 15, 2025</span>
+                        <span class="blog-meta-item">6 min read</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-href="blog/battery-life-myths-reality.html">
+                <div class="blog-image">🔋</div>
+                <div class="blog-content">
+                    <div class="blog-category">Maintenance</div>
+                    <h3 class="blog-title">Extending Your Laptop Battery Life: Myths vs. Reality</h3>
+                    <p class="blog-excerpt">
+                        Most battery advice you've heard is outdated. Here's what actually works with modern lithium batteries.
+                    </p>
+                    <div class="blog-meta">
+                        <span class="blog-meta-item">Dec 10, 2025</span>
+                        <span class="blog-meta-item">5 min read</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div style="text-align: center; padding: 3rem 0; border-top: 1px solid rgba(224, 90, 0, 0.1);">
+            <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem; color: #FFF;">
+                Have a Specific Question?
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.6); margin-bottom: 2rem;">
+                We're here to provide clarity, not just information.
+            </p>
+            <a href="https://wa.me/919591555095?text=I%20have%20a%20question%20about%20laptops" style="
+                padding: 1rem 2.5rem;
+                background: var(--emerald-glow);
+                color: var(--obsidian);
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+            ">
+                Ask Us Directly
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Click handlers for blog cards - navigate to article pages
+        document.querySelectorAll('.blog-card[data-href]').forEach(card => {
+            card.addEventListener('click', function() {
+                window.location.href = this.dataset.href;
+            });
+        });
+
+        // Fallback for cards without links - opens WhatsApp
+        document.querySelectorAll('.blog-card:not([data-href])').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.blog-title').textContent;
+                const message = `I want to learn more about: ${title}`;
+                window.open(`https://wa.me/919591555095?text=${encodeURIComponent(message)}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Stock — Dhanu Computers | Bengaluru</title>
+    <meta name="description" content="View current laptop inventory at Dhanu Computers. New & refurbished systems available in Bengaluru.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --obsidian: #0A0E1A;
+            --charcoal: #1A1F2E;
+            --deep-slate: #252B3D;
+            --emerald-glow: #E05A00;
+            --emerald-soft: rgba(224, 90, 0, 0.15);
+            --gold-muted: #D4AF37;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--obsidian);
+            color: #E8EAF0;
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(224, 90, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-mark img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-mark span {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFF;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--emerald-glow);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-subtitle {
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--emerald-glow);
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: #FFF;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .laptop-card {
+            background: rgba(26, 31, 46, 0.6);
+            border: 1px solid rgba(224, 90, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .laptop-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(224, 90, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(224, 90, 0, 0.1);
+        }
+
+        .laptop-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--deep-slate), var(--charcoal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .laptop-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.4rem 1rem;
+            background: var(--emerald-soft);
+            border: 1px solid var(--emerald-glow);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--emerald-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .laptop-badge.refurbished {
+            background: var(--gold-muted);
+            border-color: var(--gold-muted);
+            color: var(--obsidian);
+        }
+
+        .laptop-content {
+            padding: 2rem;
+        }
+
+        .laptop-brand {
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            color: var(--emerald-glow);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .laptop-model {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFF;
+            margin-bottom: 1rem;
+        }
+
+        .laptop-specs {
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .spec-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--emerald-glow);
+        }
+
+        .laptop-price {
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .laptop-cta {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            background: var(--emerald-glow);
+            color: var(--obsidian);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .laptop-cta:hover {
+            background: #25B8A5;
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .empty-state h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .filter-section {
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--emerald-soft);
+            border-color: var(--emerald-glow);
+            color: var(--emerald-glow);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .stock-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-mark">
+                <img src="images/logo.png" alt="Dhanu Computers Logo">
+                <span>Dhanu Computers</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="stock.html">Stock</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <div class="page-subtitle">Current Inventory</div>
+            <h1 class="page-title">Available Stock</h1>
+            <p class="page-description">
+                Carefully selected laptops — new and refurbished — ready for immediate consultation.
+            </p>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterStock('all')">All</button>
+            <button class="filter-btn" onclick="filterStock('new')">New</button>
+            <button class="filter-btn" onclick="filterStock('refurbished')">Refurbished</button>
+            <button class="filter-btn" onclick="filterStock('business')">Business</button>
+            <button class="filter-btn" onclick="filterStock('gaming')">Gaming</button>
+        </div>
+
+        <div class="stock-grid" id="stockGrid">
+            <!-- Laptop cards will be dynamically loaded here -->
+            <!-- Sample static cards (replace with Google Sheets data) -->
+            
+            <div class="laptop-card" data-category="refurbished business">
+                <div class="laptop-image">💻</div>
+                <span class="laptop-badge refurbished">Refurbished</span>
+                <div class="laptop-content">
+                    <div class="laptop-brand">Dell Latitude</div>
+                    <h3 class="laptop-model">Latitude 7490</h3>
+                    <div class="laptop-specs">
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            Intel Core i5-8350U (8th Gen)
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            16GB RAM • 256GB SSD
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            14" FHD Display
+                        </div>
+                    </div>
+                    <div class="laptop-price">₹22,999</div>
+                    <a href="https://wa.me/919591555095?text=I'm%20interested%20in%20Dell%20Latitude%207490" class="laptop-cta">
+                        Enquire Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="laptop-card" data-category="refurbished business">
+                <div class="laptop-image">💻</div>
+                <span class="laptop-badge refurbished">Refurbished</span>
+                <div class="laptop-content">
+                    <div class="laptop-brand">HP EliteBook</div>
+                    <h3 class="laptop-model">EliteBook 840 G5</h3>
+                    <div class="laptop-specs">
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            Intel Core i7-8650U (8th Gen)
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            16GB RAM • 512GB SSD
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            14" FHD Touch Display
+                        </div>
+                    </div>
+                    <div class="laptop-price">₹28,999</div>
+                    <a href="https://wa.me/919591555095?text=I'm%20interested%20in%20HP%20EliteBook%20840%20G5" class="laptop-cta">
+                        Enquire Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="laptop-card" data-category="refurbished business">
+                <div class="laptop-image">💻</div>
+                <span class="laptop-badge refurbished">Refurbished</span>
+                <div class="laptop-content">
+                    <div class="laptop-brand">Lenovo ThinkPad</div>
+                    <h3 class="laptop-model">ThinkPad T480</h3>
+                    <div class="laptop-specs">
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            Intel Core i5-8250U (8th Gen)
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            8GB RAM • 256GB SSD
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            14" FHD Display
+                        </div>
+                    </div>
+                    <div class="laptop-price">₹19,999</div>
+                    <a href="https://wa.me/919591555095?text=I'm%20interested%20in%20Lenovo%20ThinkPad%20T480" class="laptop-cta">
+                        Enquire Now
+                    </a>
+                </div>
+            </div>
+
+            <div class="laptop-card" data-category="gaming">
+                <div class="laptop-image">🎮</div>
+                <span class="laptop-badge">Gaming</span>
+                <div class="laptop-content">
+                    <div class="laptop-brand">Dell</div>
+                    <h3 class="laptop-model">Inspiron Gaming</h3>
+                    <div class="laptop-specs">
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            Intel Core i5 • NVIDIA GTX 1650
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                            8GB RAM • 512GB SSD
+                        </div>
+                        <div class="spec-item">
+                            <svg class="spec-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            15.6" FHD 120Hz Display
+                        </div>
+                    </div>
+                    <div class="laptop-price">₹45,999</div>
+                    <a href="https://wa.me/919591555095?text=I'm%20interested%20in%20Dell%20Inspiron%20Gaming%20Laptop" class="laptop-cta">
+                        Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 3rem 0; border-top: 1px solid rgba(224, 90, 0, 0.1);">
+            <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem; color: #FFF;">
+                Looking for Something Specific?
+            </h3>
+            <p style="color: rgba(255, 255, 255, 0.6); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                We can source specific models based on your requirements.
+            </p>
+            <a href="https://wa.me/919591555095?text=I'm%20looking%20for%20a%20specific%20laptop%20model" style="
+                padding: 1rem 2.5rem;
+                background: var(--emerald-glow);
+                color: var(--obsidian);
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                display: inline-block;
+                transition: all 0.3s ease;
+            ">
+                Request Custom Quote
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        function filterStock(category) {
+            const cards = document.querySelectorAll('.laptop-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category.includes(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // TODO: Google Sheets Integration
+        // Replace static cards with dynamic data from Google Sheets
+        // Instructions will be provided in the setup guide
+    </script>
+</body>
+</html>
