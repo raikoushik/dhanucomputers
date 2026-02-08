@@ -123,6 +123,46 @@
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
         }
+
+
+        .full-post-view {
+            display: none;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .full-post-view.active {
+            display: block;
+        }
+
+        .full-post-view h2 {
+            color: #0f172a;
+            margin: 1.25rem 0 0.75rem;
+        }
+
+        .full-post-view h3 {
+            color: #1e293b;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .full-post-view p,
+        .full-post-view li {
+            color: #475569;
+            line-height: 1.75;
+        }
+
+        .full-post-view .back-btn {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
         
         @media (max-width: 768px) {
             .blog-grid {
@@ -180,7 +220,7 @@
              =================================================================== -->
         
         <!-- Blog Grid -->
-        <div class="blog-grid">
+        <div id="blog-list" class="blog-grid">
 
             <!-- BLOG POST 0 - COPY FROM HERE -->
             <div id="cctv-surveillance-guide" class="blog-card">
@@ -209,7 +249,7 @@
                     </p>
                     
                     <div class="blog-footer">
-                        <a href="cctv-surveillance-systems-india.md" class="btn btn-whatsapp">
+                        <a href="blog.html#cctv-full-post" class="btn btn-whatsapp">
                             <svg fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                             </svg>
@@ -504,6 +544,66 @@
             <!-- BLOG POST 6 - COPY TO HERE -->
             
         </div>
+
+        <article id="cctv-full-post" class="full-post-view">
+            <a href="blog.html#blog-list" class="back-btn">← Back to all blogs</a>
+            <h1>CCTV Surveillance Systems: A Smart Security Guide for Homes and Businesses in India</h1>
+            <p>Security is a daily concern for families and businesses across India. A CCTV camera is now one of the most useful tools to protect homes, shops, offices, schools, clinics, and storage areas.</p>
+            <p>A modern security camera system does more than record video. It helps you watch live activity, receive alerts, and keep evidence if an incident happens. For families, this supports better home surveillance. For business owners, office CCTV improves safety and control.</p>
+
+            <h2>What is CCTV and How It Works</h2>
+            <p>CCTV means Closed-Circuit Television. Cameras capture video and send it to a recorder. You can watch footage live, review past clips, and often check everything from your phone.</p>
+            <ul>
+                <li>CCTV camera units</li>
+                <li>DVR or NVR recorder</li>
+                <li>Hard disk or cloud storage</li>
+                <li>Monitor or mobile app</li>
+                <li>Internet for remote viewing</li>
+            </ul>
+
+            <h2>Types of CCTV Cameras</h2>
+            <h3>Dome Camera</h3>
+            <p>Dome cameras are compact and neat. They are ideal for indoor use in homes, shops, and office lobbies.</p>
+            <h3>Bullet Camera</h3>
+            <p>Bullet cameras are visible and strong for outdoor use. They are commonly installed at gates, parking areas, and boundary walls.</p>
+            <h3>PTZ Camera</h3>
+            <p>PTZ means Pan, Tilt, Zoom. These cameras can move and zoom, useful in large areas like campuses and warehouses.</p>
+            <h3>IP Camera</h3>
+            <p>IP cameras work on a network and usually provide clearer video with smart app features.</p>
+            <h3>Wireless Camera</h3>
+            <p>Wireless cameras reduce cable work and are easy to install in homes and small offices.</p>
+
+            <h2>Benefits of Installing CCTV</h2>
+            <ul>
+                <li>Reduces theft and trespassing risk</li>
+                <li>Records activity 24/7</li>
+                <li>Provides evidence when needed</li>
+                <li>Supports remote home surveillance</li>
+                <li>Improves office CCTV management</li>
+            </ul>
+
+            <h2>CCTV for Home vs Business</h2>
+            <p>Homes usually need cameras at gate, entrance, parking, and terrace. Shops and offices need entry/exit, cash counters, stock rooms, and staff movement zones.</p>
+
+            <h2>Key Features to Look for While Buying CCTV</h2>
+            <ol>
+                <li>At least 1080p resolution</li>
+                <li>Night vision support</li>
+                <li>Enough storage backup</li>
+                <li>Reliable mobile app</li>
+                <li>Motion alerts</li>
+                <li>Weatherproof outdoor build</li>
+                <li>Local warranty and service</li>
+            </ol>
+
+            <h2>Installation & Maintenance Tips</h2>
+            <p>Install cameras at proper height, avoid blind spots, change default passwords, update firmware, clean lenses regularly, and test playback every month.</p>
+
+            <h2>Conclusion: Why CCTV is a Smart Investment</h2>
+            <p>A CCTV camera setup is a practical investment for both families and businesses. Whether you need home surveillance or office CCTV, the right setup improves confidence and protection every day.</p>
+            <p><strong>Need help getting started?</strong> Contact a trusted local CCTV service provider for a site visit and practical recommendation.</p>
+        </article>
+
         <!-- ===================================================================
              END OF BLOG GRID - OWNER: ADD NEW POSTS ABOVE THIS LINE
              =================================================================== -->
@@ -580,8 +680,20 @@
             }
         });
         
-        // Check if URL has a blog post anchor and scroll to it
-        window.addEventListener('load', () => {
+        const blogList = document.getElementById('blog-list');
+        const cctvFullPost = document.getElementById('cctv-full-post');
+
+        function updateBlogView() {
+            if (window.location.hash === '#cctv-full-post') {
+                blogList.style.display = 'none';
+                cctvFullPost.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            blogList.style.display = 'grid';
+            cctvFullPost.classList.remove('active');
+
             if (window.location.hash) {
                 const targetPost = document.querySelector(window.location.hash);
                 if (targetPost) {
@@ -590,7 +702,10 @@
                     }, 100);
                 }
             }
-        });
+        }
+
+        window.addEventListener('load', updateBlogView);
+        window.addEventListener('hashchange', updateBlogView);
     </script>
 </body>
 </html>
