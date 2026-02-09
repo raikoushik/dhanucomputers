@@ -8,7 +8,8 @@
         { text: 'Get quick support and pricing on WhatsApp.', href: 'https://wa.me/919591555095', cta: 'Chat on WhatsApp' },
         { text: 'Build your dream PC with our customization service.', href: 'customization.html', cta: 'Customize Now' },
         { text: 'Discover CCTV, power backup, and electrical services.', href: 'services.html', cta: 'See Services' },
-        { text: 'Read useful tech tips and updates in our blog.', href: 'blog.html', cta: 'Read Blog' }
+        { text: 'Read useful tech tips and updates in our blog.', href: 'blog.html', cta: 'Read Blog' },
+        { text: 'Need a custom website? Ask us about Web Design services.', href: 'services.html', cta: 'Web Design' }
     ];
 
     const flowerSpots = [
