@@ -12,311 +12,248 @@
     ];
 
     const flowerSpots = [
-        { x: 0.06, y: 0.78 },
-        { x: 0.18, y: 0.88 },
-        { x: 0.32, y: 0.82 },
-        { x: 0.48, y: 0.9 },
-        { x: 0.62, y: 0.8 },
-        { x: 0.74, y: 0.88 },
-        { x: 0.88, y: 0.82 }
+        { x: 0.08, y: 0.8 }, { x: 0.18, y: 0.88 }, { x: 0.3, y: 0.82 },
+        { x: 0.44, y: 0.9 }, { x: 0.56, y: 0.8 }, { x: 0.7, y: 0.88 }, { x: 0.84, y: 0.82 }
     ];
 
-    const bee = document.createElement('button');
-    bee.type = 'button';
-    bee.className = 'bee-assistant';
-    bee.setAttribute('aria-label', 'Helpful bumble bee assistant');
-    bee.innerHTML = `
-        <svg class="bee-body" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-            <defs>
-                <radialGradient id="wingGlow" cx="50%" cy="40%" r="75%">
-                    <stop offset="0%" stop-color="#ecfeff" stop-opacity="0.95"/>
-                    <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0.45"/>
-                </radialGradient>
-                <linearGradient id="bodyGold" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#fde047"/>
-                    <stop offset="45%" stop-color="#facc15"/>
-                    <stop offset="100%" stop-color="#f59e0b"/>
-                </linearGradient>
-                <radialGradient id="headShade" cx="45%" cy="30%" r="80%">
-                    <stop offset="0%" stop-color="#4b2e2a"/>
-                    <stop offset="100%" stop-color="#1f1412"/>
-                </radialGradient>
-            </defs>
-
-            <ellipse class="bee-wing wing-left" cx="84" cy="76" rx="29" ry="38" fill="url(#wingGlow)" opacity="0.88"/>
-            <ellipse class="bee-wing wing-right" cx="160" cy="76" rx="29" ry="38" fill="url(#wingGlow)" opacity="0.88"/>
-
-            <ellipse cx="124" cy="124" rx="62" ry="52" fill="url(#bodyGold)"/>
-            <ellipse cx="124" cy="124" rx="62" ry="52" fill="none" stroke="#1f2937" stroke-width="9"/>
-            <ellipse cx="124" cy="98" rx="44" ry="38" fill="url(#headShade)"/>
-
-            <path d="M72 116 C95 106 153 106 176 116 L176 127 C154 120 94 120 72 127 Z" fill="#111827"/>
-            <path d="M72 136 C95 126 153 126 176 136 L176 147 C154 140 94 140 72 147 Z" fill="#111827"/>
-
-            <path d="M95 91 Q105 84 115 91" stroke="#0f172a" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <path d="M133 91 Q143 84 153 91" stroke="#0f172a" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-            <circle cx="108" cy="104" r="13" fill="#fff"/>
-            <circle cx="141" cy="104" r="13" fill="#fff"/>
-            <circle cx="108" cy="106" r="7.6" fill="#0f172a"/>
-            <circle cx="141" cy="106" r="7.6" fill="#0f172a"/>
-            <circle cx="111" cy="102" r="2" fill="#fff"/>
-            <circle cx="144" cy="102" r="2" fill="#fff"/>
-
-            <ellipse cx="96" cy="114" rx="7" ry="5" fill="#fb7185" opacity="0.6"/>
-            <ellipse cx="153" cy="114" rx="7" ry="5" fill="#fb7185" opacity="0.6"/>
-            <path d="M107 124 Q124 138 141 124" stroke="#7c2d12" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path d="M114 130 Q124 136 134 130" stroke="#fb7185" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-            <path d="M112 72 Q103 38 84 30" stroke="#1f2937" stroke-width="4" fill="none"/>
-            <path d="M136 72 Q146 38 164 30" stroke="#1f2937" stroke-width="4" fill="none"/>
-            <circle cx="82" cy="29" r="8" fill="#f59e0b"/>
-            <circle cx="166" cy="29" r="8" fill="#f59e0b"/>
-
-            <g class="bee-hand-wave">
-                <ellipse cx="63" cy="138" rx="13" ry="11" fill="#f59e0b"/>
-                <circle cx="53" cy="130" r="5.5" fill="#f59e0b"/>
-                <circle cx="49" cy="139" r="5.5" fill="#f59e0b"/>
-                <circle cx="54" cy="148" r="5.5" fill="#f59e0b"/>
-            </g>
-        </svg>
-    `;
-
-
-    const tooltip = document.createElement('aside');
-    tooltip.className = 'bee-tooltip';
-
-    const trailLayer = document.createElement('div');
-    trailLayer.className = 'bee-trail-layer';
+    const sky = document.createElement('div');
+    sky.className = 'bee-sky-glow';
 
     const garden = document.createElement('div');
     garden.className = 'bee-garden';
 
+    const trailLayer = document.createElement('div');
+    trailLayer.className = 'bee-trail-layer';
+
+    const bee = document.createElement('button');
+    bee.type = 'button';
+    bee.className = 'bee-assistant';
+    bee.setAttribute('aria-label', 'Interactive bumblebee guide mascot');
+    bee.innerHTML = `
+        <svg class="bee-body" viewBox="0 0 260 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <defs>
+                <radialGradient id="beeAura" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#fde68a" stop-opacity="0.7"/>
+                    <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="beeGold" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#fff7ae"/>
+                    <stop offset="50%" stop-color="#facc15"/>
+                    <stop offset="100%" stop-color="#f59e0b"/>
+                </linearGradient>
+                <radialGradient id="beeFurShade" cx="45%" cy="30%" r="75%">
+                    <stop offset="0%" stop-color="#4b2f2a"/>
+                    <stop offset="100%" stop-color="#1b1412"/>
+                </radialGradient>
+                <radialGradient id="wingSSS" cx="50%" cy="40%" r="80%">
+                    <stop offset="0%" stop-color="#ecfeff" stop-opacity="0.95"/>
+                    <stop offset="70%" stop-color="#a5f3fc" stop-opacity="0.52"/>
+                    <stop offset="100%" stop-color="#67e8f9" stop-opacity="0.18"/>
+                </radialGradient>
+            </defs>
+
+            <circle cx="130" cy="122" r="88" fill="url(#beeAura)" class="bee-aura"/>
+
+            <ellipse class="bee-wing wing-left" cx="86" cy="78" rx="31" ry="40" fill="url(#wingSSS)"/>
+            <ellipse class="bee-wing wing-right" cx="173" cy="78" rx="31" ry="40" fill="url(#wingSSS)"/>
+
+            <ellipse cx="130" cy="132" rx="66" ry="54" fill="url(#beeGold)"/>
+            <ellipse cx="130" cy="132" rx="66" ry="54" fill="none" stroke="#111827" stroke-width="8"/>
+            <ellipse cx="130" cy="102" rx="47" ry="39" fill="url(#beeFurShade)"/>
+
+            <path d="M76 126 C98 114 162 114 184 126 L184 137 C162 130 98 130 76 137 Z" fill="#0f172a"/>
+            <path d="M76 146 C98 134 162 134 184 146 L184 157 C162 150 98 150 76 157 Z" fill="#0f172a"/>
+
+            <path d="M100 94 Q111 86 122 94" stroke="#0f172a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M138 94 Q149 86 160 94" stroke="#0f172a" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+            <circle cx="114" cy="108" r="14" fill="#fff"/>
+            <circle cx="147" cy="108" r="14" fill="#fff"/>
+            <circle cx="114" cy="110" r="8" fill="#0f172a"/>
+            <circle cx="147" cy="110" r="8" fill="#0f172a"/>
+            <circle cx="117" cy="105" r="2.2" fill="#fff"/>
+            <circle cx="150" cy="105" r="2.2" fill="#fff"/>
+
+            <ellipse cx="102" cy="120" rx="7" ry="5" fill="#fb7185" opacity="0.6"/>
+            <ellipse cx="159" cy="120" rx="7" ry="5" fill="#fb7185" opacity="0.6"/>
+            <path d="M114 129 Q130 142 146 129" stroke="#7c2d12" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M120 135 Q130 141 140 135" stroke="#fb7185" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+            <path d="M118 74 Q109 40 90 31" stroke="#1f2937" stroke-width="4" fill="none"/>
+            <path d="M142 74 Q151 40 170 31" stroke="#1f2937" stroke-width="4" fill="none"/>
+            <circle cx="88" cy="30" r="8" fill="#f59e0b"/>
+            <circle cx="172" cy="30" r="8" fill="#f59e0b"/>
+
+            <g class="bee-hand-wave">
+                <ellipse cx="68" cy="144" rx="13" ry="11" fill="#f59e0b"/>
+                <circle cx="57" cy="136" r="5.3" fill="#f59e0b"/>
+                <circle cx="53" cy="145" r="5.3" fill="#f59e0b"/>
+                <circle cx="58" cy="154" r="5.3" fill="#f59e0b"/>
+            </g>
+        </svg>
+    `;
+
+    const tooltip = document.createElement('aside');
+    tooltip.className = 'bee-tooltip';
+
     const nest = document.createElement('div');
     nest.className = 'bee-nest';
-    nest.setAttribute('aria-hidden', 'true');
 
+    document.body.appendChild(sky);
     document.body.appendChild(garden);
     document.body.appendChild(trailLayer);
     document.body.appendChild(nest);
     document.body.appendChild(bee);
     document.body.appendChild(tooltip);
 
-    flowerSpots.forEach((spot, index) => {
+    flowerSpots.forEach((spot, i) => {
         const flower = document.createElement('div');
-        flower.className = `bee-flower flower-${index % 4}`;
+        flower.className = `bee-flower flower-${i % 4}`;
         flower.innerHTML = `
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="50" cy="50" r="14" fill="#F59E0B"/>
-                <ellipse cx="50" cy="22" rx="11" ry="18" fill="#F472B6"/>
-                <ellipse cx="50" cy="78" rx="11" ry="18" fill="#F472B6"/>
-                <ellipse cx="22" cy="50" rx="18" ry="11" fill="#F472B6"/>
-                <ellipse cx="78" cy="50" rx="18" ry="11" fill="#F472B6"/>
-                <ellipse cx="31" cy="31" rx="12" ry="9" fill="#F9A8D4"/>
-                <ellipse cx="69" cy="31" rx="12" ry="9" fill="#F9A8D4"/>
+                <circle cx="50" cy="50" r="14" fill="#f59e0b"/>
+                <ellipse cx="50" cy="22" rx="11" ry="18" fill="#f472b6"/>
+                <ellipse cx="50" cy="78" rx="11" ry="18" fill="#f472b6"/>
+                <ellipse cx="22" cy="50" rx="18" ry="11" fill="#f472b6"/>
+                <ellipse cx="78" cy="50" rx="18" ry="11" fill="#f472b6"/>
+                <ellipse cx="31" cy="31" rx="12" ry="9" fill="#f9a8d4"/>
+                <ellipse cx="69" cy="31" rx="12" ry="9" fill="#f9a8d4"/>
             </svg>
         `;
         spot.element = flower;
         document.body.appendChild(flower);
     });
 
-    let x = window.innerWidth * 0.28;
-    let y = window.innerHeight * 0.32;
-    let targetX = x;
-    let targetY = y;
-    let resting = false;
-    let paused = false;
+    let x = window.innerWidth * 0.35;
+    let y = window.innerHeight * 0.35;
+    let t = 0;
+    let centerX = x;
+    let centerY = y;
+    let scrollBoost = 0;
+    let mouseX = x;
+    let mouseY = y;
+    let idleMode = false;
     let suggestionIndex = 0;
     let hideTipTimer;
-    let activeFlower = null;
-    let frameCounter = 0;
-    let mouseX = window.innerWidth * 0.5;
-    let mouseY = window.innerHeight * 0.5;
-    let lastMoveAt = Date.now();
-    let nestX = 130;
-    let nestY = window.innerHeight - 120;
+    let nestX = 110;
+    let nestY = window.innerHeight - 105;
 
-    function positionGarden() {
-        nestX = Math.max(90, Math.min(window.innerWidth - 120, window.innerWidth * 0.12));
-        nestY = window.innerHeight - 102;
+    function positionScene() {
+        nestX = Math.max(90, Math.min(window.innerWidth - 130, window.innerWidth * 0.12));
+        nestY = window.innerHeight - 105;
         nest.style.left = `${nestX}px`;
         nest.style.top = `${nestY}px`;
-
         flowerSpots.forEach((spot) => {
             spot.element.style.left = `${Math.round(window.innerWidth * spot.x)}px`;
             spot.element.style.top = `${Math.round(window.innerHeight * spot.y)}px`;
         });
     }
 
-    function clearActiveFlower() {
-        if (activeFlower) {
-            activeFlower.classList.remove('is-visited');
-            activeFlower = null;
-        }
-    }
-
-    function setRandomTarget() {
-        const margin = 90;
-        targetX = margin + Math.random() * Math.max(120, window.innerWidth - margin * 2);
-        targetY = margin + Math.random() * Math.max(120, window.innerHeight - margin * 2);
-        resting = false;
-        bee.classList.remove('is-resting');
-        clearActiveFlower();
-    }
-
-    function setFlowerTarget() {
-        const spot = flowerSpots[Math.floor(Math.random() * flowerSpots.length)];
-        targetX = Math.round(window.innerWidth * spot.x) + 8;
-        targetY = Math.round(window.innerHeight * spot.y) + 8;
-        resting = true;
-        bee.classList.add('is-resting');
-        clearActiveFlower();
-        activeFlower = spot.element;
-        activeFlower.classList.add('is-visited');
-    }
-
-    function setNestTarget() {
-        targetX = nestX;
-        targetY = nestY;
-        resting = true;
-        bee.classList.add('is-resting');
-        clearActiveFlower();
-        nest.classList.add('is-active');
-        setTimeout(() => nest.classList.remove('is-active'), 2800);
-    }
-
-    function setCursorTarget() {
-        targetX = Math.min(window.innerWidth - 80, Math.max(80, mouseX + (Math.random() * 80 - 40)));
-        targetY = Math.min(window.innerHeight - 120, Math.max(90, mouseY - 32 + (Math.random() * 50 - 25)));
-        resting = true;
-        bee.classList.add('is-resting');
-        clearActiveFlower();
-    }
-
-    function updateTooltipPosition() {
-        const left = Math.min(window.innerWidth - 260, x + 52);
-        const top = Math.max(86, y - 30);
-        tooltip.style.left = `${left}px`;
-        tooltip.style.top = `${top}px`;
-    }
-
     function showSuggestion(forceIndex) {
         if (typeof forceIndex === 'number') {
             suggestionIndex = forceIndex % suggestions.length;
         }
-        const suggestion = suggestions[suggestionIndex];
+        const item = suggestions[suggestionIndex];
         suggestionIndex = (suggestionIndex + 1) % suggestions.length;
-        const external = suggestion.href.startsWith('http');
-
-        tooltip.innerHTML = `
-            <p>${suggestion.text}</p>
-            <a href="${suggestion.href}" class="bee-tooltip-link" ${external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${suggestion.cta}</a>
-        `;
-        updateTooltipPosition();
+        const external = item.href.startsWith('http');
+        tooltip.innerHTML = `<p>${item.text}</p><a href="${item.href}" class="bee-tooltip-link" ${external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${item.cta}</a>`;
         tooltip.classList.add('show');
-
         clearTimeout(hideTipTimer);
-        hideTipTimer = setTimeout(() => {
-            tooltip.classList.remove('show');
-        }, 4300);
+        hideTipTimer = setTimeout(() => tooltip.classList.remove('show'), 4200);
     }
 
     function spawnLoveParticle(speed) {
-        const love = document.createElement('span');
-        love.className = Math.random() < 0.5 ? 'bee-sparkle heart' : 'bee-sparkle';
-        love.style.left = `${x + 24 + Math.random() * 10}px`;
-        love.style.top = `${y + 36 + Math.random() * 10}px`;
-        love.style.setProperty('--sparkle-size', `${4 + Math.min(10, speed * 14)}px`);
-        trailLayer.appendChild(love);
-        love.addEventListener('animationend', () => love.remove());
+        const p = document.createElement('span');
+        p.className = Math.random() < 0.55 ? 'bee-sparkle heart' : 'bee-sparkle';
+        p.style.left = `${x + 26 + Math.random() * 12}px`;
+        p.style.top = `${y + 42 + Math.random() * 8}px`;
+        p.style.setProperty('--sparkle-size', `${4 + Math.min(10, speed * 20)}px`);
+        trailLayer.appendChild(p);
+        p.addEventListener('animationend', () => p.remove());
     }
 
-    function chooseNextTarget() {
-        const idleTime = Date.now() - lastMoveAt;
-        if (idleTime > 4200) {
-            Math.random() < 0.5 ? setNestTarget() : setCursorTarget();
-            return;
-        }
-
-        const roll = Math.random();
-        if (roll < 0.3) {
-            setFlowerTarget();
-        } else if (roll < 0.45) {
-            setCursorTarget();
-        } else {
-            setRandomTarget();
-        }
+    function updateNearbyFlowers() {
+        flowerSpots.forEach((spot) => {
+            const fx = window.innerWidth * spot.x;
+            const fy = window.innerHeight * spot.y;
+            const d = Math.hypot(fx - x, fy - y);
+            if (d < 140) {
+                spot.element.classList.add('is-visited');
+            } else {
+                spot.element.classList.remove('is-visited');
+            }
+        });
     }
 
     function animate() {
-        frameCounter += 1;
+        t += 0.018 + scrollBoost * 0.002;
+        scrollBoost *= 0.92;
 
-        if (!paused) {
-            x += (targetX - x) * 0.02;
-            y += (targetY - y) * 0.02;
-            const dx = targetX - x;
-            const dy = targetY - y;
-            const speed = Math.hypot(dx, dy) * 0.01;
-            const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-            bee.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${angle * 0.12}deg)`;
+        const targetCX = idleMode ? (Math.random() < 0.5 ? mouseX : nestX) : (window.innerWidth * 0.5 + Math.sin(t * 0.33) * window.innerWidth * 0.22);
+        const targetCY = idleMode ? (Math.random() < 0.5 ? Math.max(95, mouseY - 40) : nestY) : (window.innerHeight * 0.42 + Math.cos(t * 0.27) * window.innerHeight * 0.17);
 
-            if (speed > 0.07 && frameCounter % 4 === 0) {
-                spawnLoveParticle(speed);
-            }
+        centerX += (targetCX - centerX) * 0.018;
+        centerY += (targetCY - centerY) * 0.018;
 
-            if (Math.hypot(dx, dy) < 20) {
-                if (resting) {
-                    resting = false;
-                    setTimeout(() => {
-                        if (!paused) {
-                            setRandomTarget();
-                        }
-                    }, 2000 + Math.random() * 1600);
-                } else {
-                    chooseNextTarget();
-                }
-            }
+        const fig8x = Math.sin(t * 1.06) * 120;
+        const fig8y = Math.sin(t * 2.12) * 64;
+
+        const nx = centerX + fig8x;
+        const ny = centerY + fig8y;
+
+        const dx = nx - x;
+        const dy = ny - y;
+        const speed = Math.hypot(dx, dy) * 0.03;
+
+        x += dx * 0.09;
+        y += dy * 0.09;
+
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        bee.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${angle * 0.13}deg)`;
+
+        tooltip.style.left = `${Math.min(window.innerWidth - 270, x + 56)}px`;
+        tooltip.style.top = `${Math.max(84, y - 24)}px`;
+
+        if (speed > 0.12) {
+            spawnLoveParticle(speed);
         }
 
-        updateTooltipPosition();
+        updateNearbyFlowers();
         requestAnimationFrame(animate);
     }
 
-    bee.addEventListener('click', () => {
-        paused = !paused;
-        bee.classList.toggle('is-paused', paused);
-        showSuggestion();
-        if (!paused) {
-            setRandomTarget();
-        }
-    });
-
     bee.addEventListener('mouseenter', () => {
-        paused = true;
-        bee.classList.add('is-paused');
         showSuggestion();
+        idleMode = true;
     });
 
     bee.addEventListener('mouseleave', () => {
-        paused = false;
-        bee.classList.remove('is-paused');
-        setRandomTarget();
+        idleMode = false;
     });
 
-    document.addEventListener('mousemove', (event) => {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-        lastMoveAt = Date.now();
+    bee.addEventListener('click', () => {
+        showSuggestion();
+    });
+
+    let idleTimer;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        idleMode = false;
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+            idleMode = true;
+        }, 2600);
     }, { passive: true });
 
-    positionGarden();
-    setRandomTarget();
-    animate();
-    showSuggestion(0);
-    setInterval(() => showSuggestion(), 9000);
+    window.addEventListener('scroll', () => {
+        scrollBoost = Math.min(4, scrollBoost + 0.7);
+    }, { passive: true });
 
-    window.addEventListener('resize', () => {
-        positionGarden();
-        setRandomTarget();
-    });
+    window.addEventListener('resize', positionScene);
+
+    positionScene();
+    showSuggestion(0);
+    animate();
+    setInterval(() => showSuggestion(), 9000);
 })();
