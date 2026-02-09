@@ -3,119 +3,124 @@
 
     function start() {
         const tips = [
-            { text: 'Welcome to DhanuTech! Explore our power, IT, and electrical solutions.', href: 'index.html', cta: 'Home' },
-            { text: 'Check our latest laptops, desktops, and accessories.', href: 'products.html', cta: 'View Products' },
-            { text: 'Need custom builds or service help? Contact us quickly on WhatsApp.', href: 'contact.html', cta: 'Contact Us' }
+            { text: 'Hi! Welcome to DhanuTech 🌼 We do power, computers, electronics and electrical solutions.', href: 'index.html', cta: 'Explore Home' },
+            { text: 'Need a laptop, desktop or accessory? I can guide you to our products.', href: 'products.html', cta: 'View Products' },
+            { text: 'For custom builds and service support, our team is ready to help.', href: 'customization.html', cta: 'Customization' },
+            { text: 'Want quick help? Let’s connect on Contact page anytime 💛', href: 'contact.html', cta: 'Contact Us' }
         ];
 
-        const bot = document.createElement('button');
-        bot.type = 'button';
-        bot.className = 'ai-assistant github-style';
-        bot.setAttribute('aria-label', 'DhanuTech AI assistant');
-        bot.innerHTML = `
-            <svg class="ai-body" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        const scene = document.createElement('div');
+        scene.className = 'bird-scene';
+        scene.innerHTML = `
+            <div class="bird-tree">
+                <div class="bird-tree-crown"></div>
+                <div class="bird-branch"></div>
+                <div class="bird-water" aria-hidden="true"><span></span></div>
+            </div>
+            <div class="bird-grass-row" aria-hidden="true"></div>
+            <div class="bird-flowers" aria-hidden="true">
+                <i class="f f1"></i><i class="f f2"></i><i class="f f3"></i><i class="f f4"></i><i class="f f5"></i>
+            </div>
+        `;
+
+        const bird = document.createElement('button');
+        bird.type = 'button';
+        bird.className = 'bird-assistant';
+        bird.setAttribute('aria-label', 'DhanuTech yellow bird assistant');
+        bird.innerHTML = `
+            <svg class="bird-svg" viewBox="0 0 170 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                 <defs>
-                    <linearGradient id="ai_shell" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stop-color="#c7d2fe"/>
-                        <stop offset="100%" stop-color="#60a5fa"/>
+                    <linearGradient id="birdBody" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#fff6bf"/>
+                        <stop offset="60%" stop-color="#facc15"/>
+                        <stop offset="100%" stop-color="#eab308"/>
                     </linearGradient>
                 </defs>
-                <circle cx="80" cy="80" r="56" fill="url(#ai_shell)" stroke="#1e3a8a" stroke-width="4"/>
-                <rect x="44" y="56" width="72" height="50" rx="16" fill="#0f172a" stroke="#1e40af" stroke-width="3"/>
-                <circle cx="66" cy="80" r="8" fill="#22d3ee"/>
-                <circle cx="94" cy="80" r="8" fill="#22d3ee"/>
-                <rect x="66" y="95" width="28" height="5" rx="2.5" fill="#93c5fd"/>
-                <path d="M80 24 L80 42" stroke="#1e3a8a" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="80" cy="20" r="7" fill="#38bdf8"/>
-                <circle cx="40" cy="84" r="7" fill="#1d4ed8"/>
-                <circle cx="120" cy="84" r="7" fill="#1d4ed8"/>
+                <ellipse cx="88" cy="86" rx="44" ry="34" fill="url(#birdBody)" stroke="#854d0e" stroke-width="3"/>
+                <ellipse class="bird-wing" cx="89" cy="89" rx="22" ry="15" fill="#f59e0b"/>
+                <circle cx="56" cy="79" r="18" fill="url(#birdBody)" stroke="#854d0e" stroke-width="2.6"/>
+                <circle cx="51" cy="77" r="4.6" fill="#111827"/>
+                <circle cx="52" cy="75.8" r="1.4" fill="#fff"/>
+                <path d="M40 90 Q48 96 56 90" stroke="#7c2d12" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+                <polygon points="35,81 16,86 35,91" fill="#fb923c"/>
+                <path d="M128 85 L151 76 L132 90 L151 104 Z" fill="#fbbf24" stroke="#92400e" stroke-width="2"/>
+                <path d="M84 117 L82 132" stroke="#7c2d12" stroke-width="3" stroke-linecap="round"/>
+                <path d="M97 117 L96 132" stroke="#7c2d12" stroke-width="3" stroke-linecap="round"/>
+                <ellipse cx="81" cy="133" rx="5" ry="2.8" fill="#7c2d12"/>
+                <ellipse cx="96" cy="133" rx="5" ry="2.8" fill="#7c2d12"/>
             </svg>
         `;
 
-        const spotlight = document.createElement('div');
-        spotlight.className = 'ai-spotlight';
+        const tooltip = document.createElement('aside');
+        tooltip.className = 'bird-tooltip';
 
-        const tip = document.createElement('aside');
-        tip.className = 'ai-tooltip github-style';
+        const heartsLayer = document.createElement('div');
+        heartsLayer.className = 'bird-hearts-layer';
 
-        document.body.appendChild(spotlight);
-        document.body.appendChild(bot);
-        document.body.appendChild(tip);
+        document.body.appendChild(scene);
+        document.body.appendChild(heartsLayer);
+        document.body.appendChild(bird);
+        document.body.appendChild(tooltip);
 
         let tipIndex = 0;
         let hideTimer;
+        let mode = 'fly';
+        let modeUntil = performance.now() + 7500;
+
+        const state = {
+            x: window.innerWidth - 160,
+            y: window.innerHeight - 210,
+            targetX: window.innerWidth - 160,
+            targetY: window.innerHeight - 210,
+            t: 0,
+            rot: 0,
+            flap: 0
+        };
 
         function showTip(force) {
             if (typeof force === 'number') tipIndex = force % tips.length;
             const item = tips[tipIndex];
             tipIndex = (tipIndex + 1) % tips.length;
-            const external = item.href.startsWith('http');
-            tip.innerHTML = `<p>${item.text}</p><a href="${item.href}" class="bee-tooltip-link" ${external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${item.cta}</a>`;
-            tip.classList.add('show');
+            tooltip.innerHTML = `<p>${item.text}</p><a href="${item.href}" class="bird-link">${item.cta}</a>`;
+            tooltip.classList.add('show');
             clearTimeout(hideTimer);
-            hideTimer = setTimeout(() => tip.classList.remove('show'), 3400);
+            hideTimer = setTimeout(() => tooltip.classList.remove('show'), 3500);
         }
 
-        function parseLuminance(color) {
-            const m = color && color.match(/rgba?\(([^)]+)\)/);
-            if (!m) return 1;
-            const [r, g, b] = m[1].split(',').slice(0, 3).map((n) => Number.parseFloat(n.trim()) / 255);
-            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        function emitLove(x, y) {
+            const h = document.createElement('span');
+            h.className = 'bird-heart';
+            h.textContent = Math.random() > 0.35 ? '❤' : '✨';
+            h.style.left = `${x}px`;
+            h.style.top = `${y}px`;
+            h.style.setProperty('--dx', `${(Math.random() - 0.5) * 34}px`);
+            heartsLayer.appendChild(h);
+            setTimeout(() => h.remove(), 1300);
         }
 
-        function updateContrastMode(x, y) {
-            const el = document.elementFromPoint(Math.max(0, Math.min(window.innerWidth - 1, x)), Math.max(0, Math.min(window.innerHeight - 1, y)));
-            let node = el;
-            let lum = 1;
-            while (node && node !== document.documentElement) {
-                const bg = getComputedStyle(node).backgroundColor;
-                if (bg && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-                    lum = parseLuminance(bg);
-                    break;
-                }
-                node = node.parentElement;
+        function chooseNextMode() {
+            const r = Math.random();
+            if (r < 0.22) {
+                mode = 'perch';
+                modeUntil = performance.now() + 3600;
+                state.targetX = 120;
+                state.targetY = window.innerHeight - 170;
+                scene.classList.add('active-perch');
+            } else if (r < 0.35) {
+                mode = 'drink';
+                modeUntil = performance.now() + 2600;
+                state.targetX = 165;
+                state.targetY = window.innerHeight - 135;
+                scene.classList.add('active-drink');
+            } else {
+                mode = 'fly';
+                modeUntil = performance.now() + 7200;
+                scene.classList.remove('active-perch', 'active-drink');
             }
-            bot.classList.toggle('on-dark', lum < 0.45);
-            spotlight.classList.toggle('on-dark', lum < 0.45);
         }
 
-        const state = {
-            x: window.innerWidth - 120,
-            y: window.innerHeight - 180,
-            targetX: window.innerWidth - 120,
-            targetY: window.innerHeight - 180,
-            t: 0,
-            z: 0,
-            angle: 0,
-            loop: 0
-        };
-
-        gsap.ticker.add(() => {
-            state.t += 0.0105;
-            const ox = Math.sin(state.t * 1.1) * 26;
-            const oy = Math.cos(state.t * 1.7) * 17;
-            state.z = (Math.sin(state.t * 0.65) + 1) * 0.5;
-
-            state.x += ((state.targetX + ox) - state.x) * 0.07;
-            state.y += ((state.targetY + oy) - state.y) * 0.07;
-            state.angle += ((ox * 0.32) - state.angle) * 0.14;
-
-            const loopY = Math.sin(state.loop * Math.PI * 2) * 24;
-            const scale = 0.9 + state.z * 0.24;
-            const visualY = state.y - loopY;
-            bot.style.transform = `translate3d(${state.x}px, ${visualY}px, 0) rotate(${state.angle}deg) scale(${scale})`;
-
-            spotlight.style.left = `${state.x + 34}px`;
-            spotlight.style.top = `${visualY + 40}px`;
-            spotlight.style.transform = `rotate(${state.angle + 10}deg) scale(${0.88 + state.z * 0.2})`;
-
-            tip.style.left = `${Math.max(14, state.x - 240)}px`;
-            tip.style.top = `${Math.max(74, visualY - 4)}px`;
-
-            updateContrastMode(state.x + 36, visualY + 36);
-        });
-
-        function moveToCurrentSection() {
+        function moveToSection() {
+            if (mode !== 'fly') return;
             const sections = [...document.querySelectorAll('section, .service-section, .page-header')];
             const mid = window.scrollY + window.innerHeight * 0.5;
             let nearest = null;
@@ -129,23 +134,59 @@
             });
             if (!nearest) return;
             const rect = nearest.getBoundingClientRect();
-            state.targetY = Math.min(window.innerHeight - 150, Math.max(120, rect.top + rect.height * 0.28));
-            state.targetX = window.innerWidth - 120;
+            state.targetY = Math.min(window.innerHeight - 150, Math.max(110, rect.top + rect.height * 0.3));
+            state.targetX = window.innerWidth - 150;
         }
 
-        bot.addEventListener('mouseenter', () => {
+        gsap.ticker.add(() => {
+            const now = performance.now();
+            state.t += 0.012;
+
+            if (now > modeUntil) {
+                scene.classList.remove('active-perch', 'active-drink');
+                chooseNextMode();
+            }
+
+            const ox = Math.sin(state.t * 1.25) * (mode === 'fly' ? 28 : 5);
+            const oy = Math.cos(state.t * 1.9) * (mode === 'fly' ? 16 : 3);
+
+            state.x += ((state.targetX + ox) - state.x) * 0.08;
+            state.y += ((state.targetY + oy) - state.y) * 0.08;
+            state.rot += (((mode === 'fly' ? ox * 0.3 : -8) - state.rot) * 0.14);
+            state.flap = mode === 'fly' ? Math.sin(state.t * 18) : Math.sin(state.t * 6) * 0.3;
+
+            bird.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${state.rot}deg) scale(${mode === 'drink' ? 0.94 : 1})`;
+            bird.style.setProperty('--wing', `${state.flap * 17}deg`);
+
+            tooltip.style.left = `${Math.max(12, state.x - 245)}px`;
+            tooltip.style.top = `${Math.max(72, state.y - 8)}px`;
+
+            if (Math.random() < 0.09) emitLove(state.x + 35, state.y + 35);
+            if (mode === 'drink' && Math.random() < 0.16) scene.classList.add('splash');
+            if (scene.classList.contains('splash') && Math.random() < 0.2) scene.classList.remove('splash');
+        });
+
+        bird.addEventListener('mouseenter', () => {
             showTip();
-            gsap.to(state, { duration: 0.75, loop: 1, yoyo: true, repeat: 1, ease: 'power2.inOut' });
+            emitLove(state.x + 30, state.y + 10);
+            gsap.to(state, { duration: 0.7, targetY: state.targetY - 22, yoyo: true, repeat: 1, ease: 'power2.inOut' });
         });
 
-        bot.addEventListener('click', () => showTip());
-        window.addEventListener('scroll', moveToCurrentSection, { passive: true });
+        bird.addEventListener('click', () => {
+            showTip();
+            emitLove(state.x + 46, state.y + 12);
+            emitLove(state.x + 22, state.y + 18);
+        });
+
+        window.addEventListener('scroll', moveToSection, { passive: true });
         window.addEventListener('resize', () => {
-            state.targetX = window.innerWidth - 120;
+            state.targetX = window.innerWidth - 150;
+            state.targetY = Math.min(state.targetY, window.innerHeight - 120);
         });
 
+        chooseNextMode();
         showTip(0);
-        setInterval(() => showTip(), 10000);
+        setInterval(() => showTip(), 11000);
     }
 
     if (window.gsap) {
