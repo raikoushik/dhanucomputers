@@ -5,10 +5,9 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const tips = [
-        { text: 'Welcome to DhanuTech — your Honey Bee guide for power, computers, electronics and electrical solutions.', href: 'index.html', cta: 'Home' },
-        { text: 'Explore Products: laptops, desktops, CCTV, accessories and business essentials.', href: 'products.html', cta: 'Products' },
-        { text: 'Need custom setup or repair? Visit Services and Customization for quick support.', href: 'services.html', cta: 'Services' },
-        { text: 'Read our latest blog updates and contact us anytime for help.', href: 'blog.html', cta: 'Blog' }
+        { text: 'Hi, I am your living DhanuTech Honey Bee assistant.', href: 'index.html', cta: 'Home' },
+        { text: 'I can guide you to products, services, customization, and support.', href: 'services.html', cta: 'Services' },
+        { text: 'Need help fast? Open contact and we are ready for you.', href: 'contact.html', cta: 'Contact' }
     ];
 
     function start() {
@@ -16,11 +15,12 @@
 
         document.querySelector('.honey-bee-assistant')?.remove();
         document.querySelector('.honey-bee-tooltip')?.remove();
+        document.querySelector('.honey-bee-shadow')?.remove();
 
         const bee = document.createElement('button');
         bee.type = 'button';
         bee.className = 'honey-bee-assistant';
-        bee.setAttribute('aria-label', 'DhanuTech honey bee assistant');
+        bee.setAttribute('aria-label', 'DhanuTech living honey bee assistant');
         bee.innerHTML = `
             <svg class="honey-bee-svg" viewBox="0 0 180 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                 <defs>
@@ -49,8 +49,8 @@
                 <circle cx="50" cy="72" r="3.2" fill="#111827"/>
                 <circle cx="62" cy="72" r="3.2" fill="#111827"/>
                 <path d="M49 82 Q56 88 63 82" stroke="#9a3412" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-                <path d="M53 58 Q48 46 41 40" stroke="#2f2f2f" stroke-width="2" fill="none"/>
-                <path d="M66 58 Q70 45 77 40" stroke="#2f2f2f" stroke-width="2" fill="none"/>
+                <path class="hb-ant" d="M53 58 Q48 46 41 40" stroke="#2f2f2f" stroke-width="2" fill="none"/>
+                <path class="hb-ant" d="M66 58 Q70 45 77 40" stroke="#2f2f2f" stroke-width="2" fill="none"/>
                 <circle cx="41" cy="39" r="2.4" fill="#2f2f2f"/>
                 <circle cx="78" cy="39" r="2.4" fill="#2f2f2f"/>
                 <path d="M113 84 L130 77 L118 92 L132 100" fill="#c07a22" stroke="#6b3f1d" stroke-width="1.8"/>
@@ -59,7 +59,10 @@
 
         const tip = document.createElement('aside');
         tip.className = 'honey-bee-tooltip';
+        const shadow = document.createElement('div');
+        shadow.className = 'honey-bee-shadow';
 
+        document.body.appendChild(shadow);
         document.body.appendChild(bee);
         document.body.appendChild(tip);
 
@@ -72,7 +75,8 @@
             angle: 0,
             retargetAt: performance.now() + 1000,
             paused: false,
-            rafId: 0
+            rafId: 0,
+            mode: 'fly'
         };
 
         let tipIndex = 0;
@@ -85,31 +89,40 @@
             tip.innerHTML = `<p>${item.text}</p><a href="${item.href}">${item.cta}</a>`;
             tip.classList.add('show');
             clearTimeout(hideTimer);
-            hideTimer = setTimeout(() => tip.classList.remove('show'), 3300);
+            hideTimer = setTimeout(() => tip.classList.remove('show'), 3200);
         }
 
         function retarget() {
             const margin = 90;
+            state.mode = Math.random() < 0.2 ? 'hover' : 'fly';
             state.tx = margin + Math.random() * Math.max(140, window.innerWidth - margin * 2);
             state.ty = 100 + Math.random() * Math.max(120, window.innerHeight - 330);
-            state.retargetAt = performance.now() + 1100 + Math.random() * 800;
+            state.retargetAt = performance.now() + (state.mode === 'hover' ? 1700 : 1100) + Math.random() * 900;
         }
 
         function tick(now) {
             state.t += 0.02;
 
             if (!state.paused) {
-                if (now > state.retargetAt || (Math.abs(state.tx - state.x) < 16 && Math.abs(state.ty - state.y) < 16)) retarget();
+                if (now > state.retargetAt || (Math.abs(state.tx - state.x) < 14 && Math.abs(state.ty - state.y) < 14)) retarget();
 
-                const ox = Math.sin(state.t * 1.9) * 18;
-                const oy = Math.cos(state.t * 2.2) * 10;
-                state.x += (state.tx + ox - state.x) * 0.082;
-                state.y += (state.ty + oy - state.y) * 0.082;
-                state.angle += ((ox * 0.28) - state.angle) * 0.18;
+                const drift = state.mode === 'hover' ? 8 : 18;
+                const ox = Math.sin(state.t * 1.9) * drift;
+                const oy = Math.cos(state.t * 2.2) * (state.mode === 'hover' ? 6 : 10);
+                state.x += (state.tx + ox - state.x) * (state.mode === 'hover' ? 0.06 : 0.082);
+                state.y += (state.ty + oy - state.y) * (state.mode === 'hover' ? 0.06 : 0.082);
+                state.angle += (((state.mode === 'hover' ? 0 : ox * 0.28)) - state.angle) * 0.18;
             }
 
-            bee.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${state.angle}deg)`;
-            bee.style.setProperty('--hb-wing', `${Math.sin(state.t * 52) * 30}deg`);
+            const z = (Math.sin(state.t * 0.9) + 1) * 0.5;
+            const scale = 1 + z * 0.08;
+            bee.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${state.angle}deg) scale(${scale})`;
+            bee.style.setProperty('--hb-wing', `${Math.sin(state.t * 56) * 32}deg`);
+
+            shadow.style.left = `${state.x + 42}px`;
+            shadow.style.top = `${state.y + 78}px`;
+            shadow.style.transform = `translate(-50%, -50%) scale(${0.86 + (1 - z) * 0.4})`;
+            shadow.style.opacity = `${0.16 + (1 - z) * 0.2}`;
 
             tip.style.left = `${Math.max(12, Math.min(window.innerWidth - 260, state.x - 240))}px`;
             tip.style.top = `${Math.max(64, state.y - 4)}px`;
