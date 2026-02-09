@@ -1136,3 +1136,24 @@ footer {
     .bee-flower { width: 34px; height: 34px; }
     .bee-tooltip { max-width: 190px; font-size: .81rem; }
 }
+
+/* 3D side-view realism refinement */
+.bee-assistant {
+    perspective: 700px;
+    transform-style: preserve-3d;
+}
+
+.bee-body {
+    transform: rotateY(-10deg) rotateX(6deg);
+    transform-origin: 50% 55%;
+    filter: drop-shadow(0 13px 18px rgba(15, 23, 42, 0.19)) drop-shadow(0 3px 6px rgba(234, 179, 8, 0.16));
+}
+
+.bee-wing {
+    opacity: 0.72;
+}
+
+@keyframes beeWingVibe {
+    0%,100% { transform: rotate(-12deg) scaleX(.97) scaleY(1); opacity:.68; }
+    50% { transform: rotate(12deg) scaleX(.86) scaleY(.96); opacity:.48; }
+}

@@ -29,58 +29,68 @@
         bee.className = 'bee-assistant';
         bee.setAttribute('aria-label', 'Dhanu Tech Bee mascot');
         bee.innerHTML = `
-            <svg class="bee-body" viewBox="0 0 260 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <svg class="bee-body" viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                 <defs>
-                    <radialGradient id="beeAura" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#fde68a" stop-opacity="0.58"/>
+                    <radialGradient id="beeAura" cx="50%" cy="50%" r="52%">
+                        <stop offset="0%" stop-color="#fde68a" stop-opacity="0.52"/>
                         <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
                     </radialGradient>
                     <linearGradient id="beeGold" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#fff8b8"/>
-                        <stop offset="50%" stop-color="#facc15"/>
+                        <stop offset="0%" stop-color="#fff6bf"/>
+                        <stop offset="48%" stop-color="#facc15"/>
                         <stop offset="100%" stop-color="#eab308"/>
                     </linearGradient>
-                    <radialGradient id="beeFurShade" cx="45%" cy="30%" r="75%">
-                        <stop offset="0%" stop-color="#43302b"/>
+                    <radialGradient id="beeChar" cx="45%" cy="28%" r="75%">
+                        <stop offset="0%" stop-color="#4a3a35"/>
                         <stop offset="100%" stop-color="#1f1715"/>
                     </radialGradient>
-                    <radialGradient id="wingSSS" cx="50%" cy="40%" r="80%">
-                        <stop offset="0%" stop-color="#f0fdff" stop-opacity="0.82"/>
-                        <stop offset="70%" stop-color="#99f6e4" stop-opacity="0.3"/>
-                        <stop offset="100%" stop-color="#67e8f9" stop-opacity="0.06"/>
+                    <radialGradient id="wingThin" cx="50%" cy="36%" r="85%">
+                        <stop offset="0%" stop-color="#ecfeff" stop-opacity="0.68"/>
+                        <stop offset="70%" stop-color="#99f6e4" stop-opacity="0.24"/>
+                        <stop offset="100%" stop-color="#67e8f9" stop-opacity="0.03"/>
                     </radialGradient>
                 </defs>
 
-                <circle cx="130" cy="122" r="88" fill="url(#beeAura)" class="bee-aura"/>
-                <ellipse class="bee-wing wing-left" cx="88" cy="79" rx="22" ry="32" fill="url(#wingSSS)"/>
-                <ellipse class="bee-wing wing-right" cx="171" cy="79" rx="22" ry="32" fill="url(#wingSSS)"/>
+                <circle cx="154" cy="128" r="90" fill="url(#beeAura)" class="bee-aura"/>
 
-                <ellipse cx="130" cy="132" rx="64" ry="52" fill="url(#beeGold)"/>
-                <ellipse cx="130" cy="132" rx="64" ry="52" fill="none" stroke="#111827" stroke-width="7"/>
-                <ellipse cx="130" cy="102" rx="47" ry="39" fill="url(#beeFurShade)"/>
+                <!-- Side-view wings for 3D look -->
+                <ellipse class="bee-wing wing-left" cx="140" cy="78" rx="20" ry="34" fill="url(#wingThin)" transform="rotate(-16 140 78)"/>
+                <ellipse class="bee-wing wing-right" cx="190" cy="82" rx="20" ry="30" fill="url(#wingThin)" transform="rotate(12 190 82)"/>
 
-                <path d="M78 126 C100 116 160 116 182 126 L182 136 C160 130 100 130 78 136 Z" fill="#0f172a" opacity="0.95"/>
-                <path d="M78 146 C100 136 160 136 182 146 L182 156 C160 150 100 150 78 156 Z" fill="#0f172a" opacity="0.95"/>
+                <!-- Body capsule with perspective -->
+                <ellipse cx="164" cy="136" rx="74" ry="52" fill="url(#beeGold)"/>
+                <ellipse cx="164" cy="136" rx="74" ry="52" fill="none" stroke="#111827" stroke-width="6.5"/>
+                <ellipse cx="136" cy="112" rx="44" ry="36" fill="url(#beeChar)"/>
+                <ellipse cx="221" cy="142" rx="16" ry="12" fill="#111827" opacity="0.9"/>
 
-                <path d="M102 95 Q111 90 120 95" stroke="#111827" stroke-width="3.2" fill="none" stroke-linecap="round"/>
-                <path d="M140 95 Q149 90 158 95" stroke="#111827" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+                <!-- Stripe curvature -->
+                <path d="M97 128 C132 116 194 118 228 132 L226 141 C194 133 132 132 98 139 Z" fill="#111827" opacity="0.96"/>
+                <path d="M100 148 C136 138 197 141 232 155 L229 163 C197 155 135 152 101 160 Z" fill="#111827" opacity="0.96"/>
 
-                <circle cx="114" cy="109" r="12.5" fill="#fff"/>
-                <circle cx="147" cy="109" r="12.5" fill="#fff"/>
-                <circle cx="114" cy="110" r="6.5" fill="#0f172a"/>
-                <circle cx="147" cy="110" r="6.5" fill="#0f172a"/>
-                <circle cx="116.6" cy="106" r="1.8" fill="#fff"/>
-                <circle cx="149.6" cy="106" r="1.8" fill="#fff"/>
+                <!-- Calm trustworthy face -->
+                <path d="M113 105 Q121 100 129 105" stroke="#111827" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M142 106 Q151 101 160 106" stroke="#111827" stroke-width="3" fill="none" stroke-linecap="round"/>
 
-                <path d="M116 128 Q130 138 144 128" stroke="#7c2d12" stroke-width="4" fill="none" stroke-linecap="round"/>
-                <g class="bee-fur-strands" stroke="#2c211d" stroke-width="1.2" stroke-linecap="round" opacity="0.55">
-                    <path d="M107 88 l-2 -6"/><path d="M114 86 l-1 -7"/><path d="M121 85 l0 -7"/>
-                    <path d="M128 84 l1 -7"/><path d="M135 84 l2 -6"/><path d="M142 85 l2 -6"/>
+                <ellipse cx="124" cy="117" rx="11" ry="12" fill="#fff"/>
+                <ellipse cx="153" cy="118" rx="11" ry="12" fill="#fff"/>
+                <circle cx="124" cy="119" r="6" fill="#0f172a"/>
+                <circle cx="153" cy="120" r="6" fill="#0f172a"/>
+                <circle cx="126" cy="116" r="1.6" fill="#fff"/>
+                <circle cx="155" cy="117" r="1.6" fill="#fff"/>
+
+                <path d="M126 133 Q137 140 148 133" stroke="#7c2d12" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+
+                <!-- Fur strands with randomness -->
+                <g class="bee-fur-strands" stroke="#2c211d" stroke-width="1.1" stroke-linecap="round" opacity="0.52">
+                    <path d="M116 92 l-2 -5"/><path d="M122 90 l-1 -7"/><path d="M129 90 l0 -6"/>
+                    <path d="M136 89 l1 -6"/><path d="M143 90 l2 -5"/><path d="M149 92 l2 -5"/>
                 </g>
 
-                <path d="M118 74 Q109 40 90 31" stroke="#1f2937" stroke-width="3.5" fill="none"/>
-                <path d="M142 74 Q151 40 170 31" stroke="#1f2937" stroke-width="3.5" fill="none"/>
-                <circle cx="88" cy="30" r="7.5" fill="#f59e0b"/><circle cx="172" cy="30" r="7.5" fill="#f59e0b"/>
+                <!-- Antenna -->
+                <path d="M132 82 Q122 46 102 37" stroke="#1f2937" stroke-width="3.2" fill="none"/>
+                <path d="M154 82 Q165 48 184 38" stroke="#1f2937" stroke-width="3.2" fill="none"/>
+                <circle cx="100" cy="36" r="7" fill="#f59e0b"/>
+                <circle cx="186" cy="37" r="7" fill="#f59e0b"/>
             </svg>
         `;
 
