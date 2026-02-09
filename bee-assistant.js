@@ -16,25 +16,64 @@
         bee.className = 'bee-assistant github-style';
         bee.setAttribute('aria-label', 'DhanuTech assistant bee');
         bee.innerHTML = `
-            <svg class="bee-body" viewBox="0 0 170 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <svg class="bee-body" viewBox="0 0 220 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                 <defs>
-                    <linearGradient id="gBee" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#ffe480"/>
-                        <stop offset="100%" stop-color="#f5b700"/>
-                    </linearGradient>
-                    <radialGradient id="gWing" cx="50%" cy="35%" r="80%">
-                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
-                        <stop offset="100%" stop-color="#99f6e4" stop-opacity="0.2"/>
+                    <radialGradient id="bFur" cx="45%" cy="35%" r="70%">
+                        <stop offset="0%" stop-color="#fff59d"/>
+                        <stop offset="45%" stop-color="#fde047"/>
+                        <stop offset="100%" stop-color="#facc15"/>
+                    </radialGradient>
+                    <radialGradient id="bShade" cx="50%" cy="45%" r="75%">
+                        <stop offset="0%" stop-color="#5b3b2f"/>
+                        <stop offset="100%" stop-color="#2a1d17"/>
+                    </radialGradient>
+                    <radialGradient id="bWing" cx="50%" cy="35%" r="85%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="#dbeafe" stop-opacity="0.35"/>
                     </radialGradient>
                 </defs>
-                <ellipse class="bee-wing wing-left" cx="54" cy="45" rx="14" ry="22" fill="url(#gWing)"/>
-                <ellipse class="bee-wing wing-right" cx="114" cy="45" rx="14" ry="22" fill="url(#gWing)"/>
-                <ellipse cx="84" cy="86" rx="44" ry="35" fill="url(#gBee)" stroke="#111827" stroke-width="5"/>
-                <rect x="52" y="76" width="64" height="10" rx="5" fill="#111827"/>
-                <rect x="52" y="92" width="64" height="10" rx="5" fill="#111827"/>
-                <circle cx="72" cy="77" r="8" fill="#fff"/><circle cx="96" cy="77" r="8" fill="#fff"/>
-                <circle cx="72" cy="78" r="4" fill="#0f172a"/><circle cx="96" cy="78" r="4" fill="#0f172a"/>
-                <path d="M73 93 Q84 101 95 93" stroke="#7c2d12" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <!-- wings -->
+                <ellipse class="bee-wing wing-left" cx="130" cy="52" rx="24" ry="40" fill="url(#bWing)" transform="rotate(-20 130 52)"/>
+                <ellipse class="bee-wing wing-right" cx="160" cy="62" rx="22" ry="36" fill="url(#bWing)" transform="rotate(12 160 62)"/>
+
+                <!-- body -->
+                <ellipse cx="104" cy="104" rx="67" ry="52" fill="url(#bFur)" stroke="#3b2a1f" stroke-width="4"/>
+                <ellipse cx="83" cy="86" rx="42" ry="32" fill="url(#bFur)"/>
+
+                <!-- fluffy fur spikes -->
+                <g fill="#f6d53d" opacity="0.9">
+                    <path d="M56 63 l7 -10 l6 11z"/><path d="M70 57 l6 -10 l6 10z"/><path d="M84 53 l6 -10 l5 11z"/>
+                    <path d="M98 51 l6 -9 l5 10z"/><path d="M112 52 l6 -9 l5 10z"/>
+                </g>
+
+                <!-- stripes -->
+                <path d="M42 97 C74 83 125 83 158 97 L157 108 C124 98 74 98 43 109 Z" fill="#3a2a20"/>
+                <path d="M48 121 C80 108 130 110 163 126 L161 138 C130 125 80 123 49 134 Z" fill="#3a2a20"/>
+
+                <!-- eyes -->
+                <ellipse cx="78" cy="86" rx="13" ry="14" fill="#fff"/>
+                <ellipse cx="104" cy="88" rx="12" ry="13" fill="#fff"/>
+                <ellipse cx="78" cy="88" rx="8" ry="9" fill="#1f2937"/>
+                <ellipse cx="104" cy="89" rx="7" ry="8" fill="#1f2937"/>
+                <circle cx="81" cy="84" r="2.2" fill="#fff"/>
+                <circle cx="106" cy="86" r="2" fill="#fff"/>
+
+                <!-- smile and blush -->
+                <ellipse cx="67" cy="96" rx="6" ry="3.7" fill="#fda4af" opacity="0.55"/>
+                <ellipse cx="116" cy="100" rx="6" ry="3.5" fill="#fda4af" opacity="0.5"/>
+                <path d="M81 102 Q89 109 98 102" stroke="#7c2d12" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+                <!-- antenna -->
+                <path d="M78 64 Q69 39 52 30" stroke="#2b211c" stroke-width="3" fill="none"/>
+                <path d="M102 65 Q102 40 116 28" stroke="#2b211c" stroke-width="3" fill="none"/>
+                <ellipse cx="50" cy="29" rx="5" ry="4" fill="#3b2a1f"/>
+                <ellipse cx="117" cy="27" rx="5" ry="4" fill="#3b2a1f"/>
+
+                <!-- legs -->
+                <ellipse cx="73" cy="136" rx="7" ry="10" fill="url(#bShade)"/>
+                <ellipse cx="96" cy="142" rx="7" ry="10" fill="url(#bShade)"/>
+                <ellipse cx="121" cy="138" rx="7" ry="10" fill="url(#bShade)"/>
             </svg>
         `;
 
