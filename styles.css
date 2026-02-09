@@ -1345,3 +1345,23 @@ footer {
     border-radius: 8px;
     background: rgba(59, 130, 246, 0.14);
 }
+
+/* Only-bee visibility fix */
+.bee-only-visible {
+    width: 112px !important;
+    height: 112px !important;
+    z-index: 99999 !important;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.86), rgba(255,255,255,0.2) 60%, transparent 70%);
+    border-radius: 999px;
+    filter: drop-shadow(0 10px 22px rgba(15, 23, 42, 0.34));
+}
+
+.bee-only-visible .bee-wing.left {
+    transform-origin: 86px 52px;
+    transform: rotate(var(--wing-fast, 0deg));
+}
+
+.bee-only-visible .bee-wing.right {
+    transform-origin: 105px 47px;
+    transform: rotate(calc(var(--wing-fast, 0deg) * -0.9));
+}
