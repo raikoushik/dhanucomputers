@@ -28,7 +28,8 @@
         lastCursorX: window.innerWidth * 0.7,
         lastCursorY: window.innerHeight * 0.35,
         motionFactor: LOW_END ? 0.42 : 1,
-        menuOpen: false
+        menuOpen: false,
+        announceIndex: 0
     };
 
     let bee;
@@ -43,6 +44,7 @@
     let natureDecor;
 
     const sections = [];
+    let announcements = [];
 
     function q(sel) { return document.querySelector(sel); }
     function qa(sel) { return Array.from(document.querySelectorAll(sel)); }
@@ -101,7 +103,7 @@
     function createTooltip() {
         const node = document.createElement('aside');
         node.className = 'honeybee-tooltip';
-        node.innerHTML = '<p>Need help? Ask an Engineer 🐝</p>';
+        node.innerHTML = '<p class="honeybee-tooltip-text">Need help? Ask an Engineer 🐝</p><a class="honeybee-tip-link" href="contact.html">Talk to Dhanu Tech</a>';
         return node;
     }
 
@@ -166,10 +168,58 @@
         `;
         return node;
     }
+    function buildAnnouncements() {
+        const page = (document.title || '').toLowerCase();
+        const list = [
+            { text: 'Welcome to Dhanu Tech — your engineering solutions partner.', href: 'index.html', cta: 'Home' },
+            { text: 'Need system builds, electrical integration or support? Explore Services.', href: 'services.html', cta: 'Services' },
+            { text: 'For quick consultation, message our engineer team on WhatsApp.', href: WA_LINK, cta: 'WhatsApp', external: true }
+        ];
+
+        if (page.includes('product')) list.unshift({ text: 'You are in Products. I can guide you to the right setup.', href: 'products.html', cta: 'Products' });
+        if (page.includes('blog')) list.unshift({ text: 'Reading insights? I can guide you to related services.', href: 'services.html', cta: 'View Services' });
+        if (page.includes('contact')) list.unshift({ text: 'Great! You can reach our engineers directly from here.', href: 'contact.html', cta: 'Contact' });
+        return list;
+    }
+
+    function showAnnouncement(forceText) {
+        if (!tooltip) return;
+        const tipText = tooltip.querySelector('.honeybee-tooltip-text');
+        const tipLink = tooltip.querySelector('.honeybee-tip-link');
+
+        if (forceText) {
+            tipText.textContent = forceText;
+            tipLink.href = WA_LINK;
+            tipLink.textContent = 'Chat now';
+            tipLink.target = '_blank';
+            tipLink.rel = 'noopener noreferrer';
+        } else if (announcements.length) {
+            const item = announcements[state.announceIndex % announcements.length];
+            state.announceIndex += 1;
+            tipText.textContent = item.text;
+            tipLink.textContent = item.cta;
+            tipLink.href = item.href;
+            if (item.external) {
+                tipLink.target = '_blank';
+                tipLink.rel = 'noopener noreferrer';
+            } else {
+                tipLink.removeAttribute('target');
+                tipLink.removeAttribute('rel');
+            }
+        }
+
+        tooltip.classList.add('show');
+        clearTimeout(showAnnouncement.hideTimer);
+        showAnnouncement.hideTimer = setTimeout(() => {
+            if (!state.menuOpen) tooltip.classList.remove('show');
+        }, 2600);
+    }
+
     function emitSparkle(x, y) {
         const sp = document.createElement('span');
         sp.className = 'honeybee-sparkle';
-        sp.textContent = Math.random() < 0.55 ? '✦' : '•';
+        const joy = ['💛', '✨', '❤', '😊', '•'];
+        sp.textContent = joy[Math.floor(Math.random() * joy.length)];
         sp.style.left = `${x}px`;
         sp.style.top = `${y}px`;
         sp.style.setProperty('--dx', `${(Math.random() - 0.5) * 26}px`);
@@ -232,8 +282,8 @@
 
     function positionUI() {
         bee.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${state.angle}deg)`;
-        const flutterBase = Math.sin(state.t * (42 * state.motionFactor + 12)) * 11;
-        const flutterPulse = Math.sin(state.t * 7.5) * 3.8;
+        const flutterBase = Math.sin(state.t * (46 * state.motionFactor + 14)) * 12;
+        const flutterPulse = Math.sin(state.t * 9.2) * 4.2;
         bee.style.setProperty('--wing-flutter', `${flutterBase + flutterPulse}deg`);
         tooltip.style.left = `${Math.max(12, state.x - 120)}px`;
         tooltip.style.top = `${Math.max(66, state.y - 52)}px`;
@@ -371,7 +421,10 @@
         clampTarget();
         avoidBlockingInteractions();
 
-        if (!LOW_END && Math.random() < 0.022) emitSparkle(state.x + 34, state.y + 46);
+        if (!LOW_END && Math.random() < 0.032) {
+            emitSparkle(state.x + 34, state.y + 46);
+            if (Math.random() < 0.35) emitSparkle(state.x + 22, state.y + 38);
+        }
 
         if (Math.random() < 0.0019) {
             bee.classList.add('cleaning');
@@ -418,9 +471,11 @@
 
         positionUI();
         trackSections();
+        announcements = buildAnnouncements();
+        showAnnouncement();
 
         bee.addEventListener('mouseenter', () => {
-            tooltip.classList.add('show');
+            showAnnouncement();
             emitSparkle(state.x + 44, state.y + 52);
         });
 
@@ -428,6 +483,7 @@
 
         bee.addEventListener('click', () => {
             toggleActionMenu();
+            if (state.menuOpen) showAnnouncement('Hi! I am your Dhanu Tech bee agent. How can I help?');
             if (!LOW_END) {
                 emitSparkle(state.x + 30, state.y + 44);
                 emitSparkle(state.x + 50, state.y + 44);
@@ -510,6 +566,7 @@
 
         window.addEventListener('scroll', onScroll, { passive: true });
         setInterval(nextPatrolTarget, 6500);
+        setInterval(() => showAnnouncement(), 9000);
         window.addEventListener('resize', () => {
             clampTarget();
             nextPatrolTarget();
