@@ -162,6 +162,8 @@
             <span class="bee-cloud cloud-2"></span>
             <span class="bee-tree tree-1"></span>
             <span class="bee-tree tree-2"></span>
+            <span class="bee-coconut-tree coco-1"></span>
+            <span class="bee-coconut-tree coco-2"></span>
             <span class="bee-grass"></span>
             <span class="bee-flower flower-1"></span>
             <span class="bee-flower flower-2"></span>

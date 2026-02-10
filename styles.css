@@ -1459,26 +1459,26 @@ footer {
 
 .honeybee-nature-decor {
     position: fixed;
-    right: 20px;
-    bottom: 72px;
-    width: 220px;
-    height: 170px;
+    right: 14px;
+    bottom: 62px;
+    width: 340px;
+    height: 250px;
     pointer-events: none;
     z-index: 1572;
-    opacity: 0.86;
+    opacity: 0.92;
 }
 
 .honeybee-nature-decor.is-hidden { opacity: 0; }
 
 .bee-sun {
     position: absolute;
-    right: 6px;
-    top: 6px;
-    width: 34px;
-    height: 34px;
+    right: 10px;
+    top: 10px;
+    width: 66px;
+    height: 66px;
     border-radius: 50%;
-    background: radial-gradient(circle, #fde68a 0%, #facc15 70%, #eab308 100%);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.45);
+    background: radial-gradient(circle at 35% 30%, #fef9c3 0%, #fde047 44%, #f59e0b 100%);
+    box-shadow: 0 0 36px rgba(250, 204, 21, 0.5), 0 0 70px rgba(250, 204, 21, 0.24);
 }
 
 .bee-cloud {
@@ -1499,49 +1499,90 @@ footer {
 
 .bee-cloud::before { width: 18px; height: 18px; left: 6px; top: -8px; }
 .bee-cloud::after { width: 14px; height: 14px; right: 6px; top: -6px; }
-.cloud-1 { right: 46px; top: 14px; animation: beeCloudFloat 9s ease-in-out infinite; }
-.cloud-2 { right: 96px; top: 30px; transform: scale(.85); animation: beeCloudFloat 11s ease-in-out infinite reverse; }
+.cloud-1 { right: 90px; top: 24px; transform: scale(1.2); animation: beeCloudFloat 9s ease-in-out infinite; }
+.cloud-2 { right: 170px; top: 56px; transform: scale(1.05); animation: beeCloudFloat 11s ease-in-out infinite reverse; }
 
 .bee-tree {
     position: absolute;
-    bottom: 34px;
-    width: 34px;
-    height: 62px;
+    bottom: 56px;
+    width: 52px;
+    height: 106px;
 }
 
 .bee-tree::before {
     content: '';
     position: absolute;
-    left: 13px;
+    left: 20px;
     bottom: 0;
-    width: 8px;
-    height: 24px;
-    background: #854d0e;
-    border-radius: 6px;
+    width: 12px;
+    height: 44px;
+    background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+    border-radius: 8px;
 }
 
 .bee-tree::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 16px;
-    width: 34px;
-    height: 34px;
+    bottom: 26px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background: radial-gradient(circle at 40% 30%, #86efac 0%, #16a34a 78%);
+    background: radial-gradient(circle at 40% 30%, #bbf7d0 0%, #16a34a 74%, #166534 100%);
 }
 
-.tree-1 { left: 18px; }
-.tree-2 { left: 54px; transform: scale(.86); }
+.tree-1 { left: 24px; }
+.tree-2 { left: 82px; transform: scale(.92); }
+
+.bee-coconut-tree {
+    position: absolute;
+    bottom: 54px;
+    width: 64px;
+    height: 140px;
+}
+
+.bee-coconut-tree::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    bottom: 0;
+    width: 10px;
+    height: 86px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+    transform: rotate(-5deg);
+}
+
+.bee-coconut-tree::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    bottom: 70px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, #65a30d 0 26%, transparent 28%),
+      conic-gradient(from 0deg, #4d7c0f 0 14%, transparent 14% 22%, #4d7c0f 22% 36%, transparent 36% 44%, #4d7c0f 44% 58%, transparent 58% 66%, #4d7c0f 66% 80%, transparent 80% 88%, #4d7c0f 88% 100%);
+}
+
+.bee-coconut-tree .nut,
+.bee-coconut-tree .nut2,
+.bee-coconut-tree .nut3 { display:none; }
+
+.coco-1 { left: 132px; }
+.coco-2 { left: 168px; transform: scale(0.9); }
 
 .bee-grass {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 20px;
-    height: 24px;
-    border-radius: 12px;
-    background: linear-gradient(180deg, rgba(74, 222, 128, .92), rgba(22, 163, 74, .95));
+    bottom: 18px;
+    height: 44px;
+    border-radius: 20px;
+    background:
+      linear-gradient(180deg, rgba(134, 239, 172, 0.96), rgba(22, 163, 74, .95)),
+      repeating-linear-gradient(95deg, rgba(22,163,74,.32) 0 2px, transparent 2px 6px);
 }
 
 .bee-flower {
@@ -1559,9 +1600,9 @@ footer {
     animation: beeFlowerSway 3s ease-in-out infinite;
 }
 
-.flower-1 { left: 118px; }
-.flower-2 { left: 146px; transform: scale(.9); animation-delay: .4s; }
-.flower-3 { left: 174px; transform: scale(.82); animation-delay: .8s; }
+.flower-1 { left: 206px; transform: scale(1.1); }
+.flower-2 { left: 244px; transform: scale(1.02); animation-delay: .4s; }
+.flower-3 { left: 280px; transform: scale(.95); animation-delay: .8s; }
 
 @keyframes beeCloudFloat {
     0%, 100% { transform: translateX(0); }
@@ -1616,5 +1657,5 @@ footer {
     .honeybee-assistant { width: 66px; height: 50px; }
     .honeybee-controls { left: 10px; bottom: 12px; }
     .honeybee-tooltip { max-width: 196px; }
-    .honeybee-nature-decor { transform: scale(.86); transform-origin: bottom right; right: 6px; bottom: 62px; }
+    .honeybee-nature-decor { transform: scale(.62); transform-origin: bottom right; right: -22px; bottom: 56px; }
 }
