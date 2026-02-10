@@ -40,6 +40,7 @@
     let buzzOsc;
     let buzzGain;
     let actionMenu;
+    let natureDecor;
 
     const sections = [];
 
@@ -147,6 +148,24 @@
         bee.setAttribute('aria-expanded', state.menuOpen ? 'true' : 'false');
     }
 
+
+    function createNatureDecor() {
+        const node = document.createElement('div');
+        node.className = 'honeybee-nature-decor';
+        node.setAttribute('aria-hidden', 'true');
+        node.innerHTML = `
+            <span class="bee-sun"></span>
+            <span class="bee-cloud cloud-1"></span>
+            <span class="bee-cloud cloud-2"></span>
+            <span class="bee-tree tree-1"></span>
+            <span class="bee-tree tree-2"></span>
+            <span class="bee-grass"></span>
+            <span class="bee-flower flower-1"></span>
+            <span class="bee-flower flower-2"></span>
+            <span class="bee-flower flower-3"></span>
+        `;
+        return node;
+    }
     function emitSparkle(x, y) {
         const sp = document.createElement('span');
         sp.className = 'honeybee-sparkle';
@@ -379,8 +398,10 @@
         helperText = createHelperText();
         controls = createControls();
         actionMenu = createActionMenu();
+        natureDecor = createNatureDecor();
         bee.setAttribute('aria-controls', 'honeybee-action-menu');
 
+        document.body.appendChild(natureDecor);
         document.body.appendChild(sparkleLayer);
         document.body.appendChild(bee);
         document.body.appendChild(tooltip);
@@ -453,6 +474,7 @@
                 tooltip.classList.toggle('is-hidden', state.hidden);
                 helperText.classList.toggle('is-hidden', state.hidden);
                 actionMenu.classList.toggle('is-hidden', state.hidden);
+                natureDecor.classList.toggle('is-hidden', state.hidden);
                 if (state.hidden) closeActionMenu();
                 btn.textContent = state.hidden ? '🐝' : '🙈';
             }
