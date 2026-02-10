@@ -29,7 +29,8 @@
         lastCursorY: window.innerHeight * 0.35,
         motionFactor: LOW_END ? 0.32 : 0.78,
         menuOpen: false,
-        announceIndex: 0
+        announceIndex: 0,
+        pauseUntil: 0
     };
 
     let bee;
@@ -209,10 +210,11 @@
         }
 
         tooltip.classList.add('show');
+        state.pauseUntil = performance.now() + 1900;
         clearTimeout(showAnnouncement.hideTimer);
         showAnnouncement.hideTimer = setTimeout(() => {
             if (!state.menuOpen) tooltip.classList.remove('show');
-        }, 2600);
+        }, 3200);
     }
 
     function emitSparkle(x, y) {
@@ -385,6 +387,21 @@
     function animate(now) {
         state.t += 0.012 * state.motionFactor;
         inactivityLoopBehavior(now);
+
+        const isAnnouncing = now < state.pauseUntil;
+        if (isAnnouncing) {
+            state.vx *= 0.82;
+            state.vy *= 0.82;
+            state.x += state.vx;
+            state.y += state.vy;
+            state.angle += ((Math.sin(state.t * 0.7) * 1.1) - state.angle) * 0.08;
+
+            clampTarget();
+            positionUI();
+            updateAudio();
+            requestAnimationFrame(animate);
+            return;
+        }
 
         const cursorIdle = now - state.lastPointerMove > 700;
         if (!cursorIdle && state.cursorSpeed < 0.26) {
@@ -566,7 +583,7 @@
 
         window.addEventListener('scroll', onScroll, { passive: true });
         setInterval(nextPatrolTarget, 9000);
-        setInterval(() => showAnnouncement(), 9000);
+        setInterval(() => showAnnouncement(), 11000);
         window.addEventListener('resize', () => {
             clampTarget();
             nextPatrolTarget();
