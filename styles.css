@@ -1265,6 +1265,8 @@ footer {
 /* Honey bee assistant (no banner) */
 .honeybee-assistant {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 114px;
     height: 90px;
     border: none;

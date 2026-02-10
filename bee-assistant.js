@@ -1,7 +1,9 @@
 (() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function startBeeAssistant() {
+        if (document.querySelector('.honeybee-assistant')) return;
+
         const bee = document.createElement('button');
         bee.type = 'button';
         bee.className = 'honeybee-assistant';
@@ -10,26 +12,20 @@
             <svg class="honeybee-svg" viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                 <ellipse class="honeybee-wing back" cx="132" cy="55" rx="34" ry="48" transform="rotate(-14 132 55)"/>
                 <ellipse class="honeybee-wing front" cx="170" cy="75" rx="31" ry="45" transform="rotate(16 170 75)"/>
-
                 <ellipse class="honeybee-body" cx="128" cy="106" rx="66" ry="43" transform="rotate(12 128 106)"/>
                 <ellipse class="honeybee-stripe" cx="108" cy="104" rx="11" ry="36" transform="rotate(12 108 104)"/>
                 <ellipse class="honeybee-stripe" cx="134" cy="108" rx="11" ry="37" transform="rotate(12 134 108)"/>
                 <ellipse class="honeybee-stripe" cx="160" cy="112" rx="10" ry="35" transform="rotate(12 160 112)"/>
                 <path class="honeybee-tail" d="M188 125 L212 140 L188 148 Z"/>
-
                 <circle class="honeybee-head" cx="66" cy="93" r="47"/>
                 <path class="honeybee-smile" d="M50 108 Q62 119 76 109"/>
-
                 <ellipse class="honeybee-eye-open" cx="47" cy="87" rx="7" ry="11"/>
                 <ellipse class="honeybee-eye-dot" cx="49" cy="83" rx="2.2" ry="3"/>
                 <path class="honeybee-eye-wink" d="M72 88 Q82 81 88 88"/>
-
                 <ellipse class="honeybee-cheek" cx="41" cy="102" rx="8" ry="5"/>
                 <ellipse class="honeybee-cheek" cx="86" cy="102" rx="8" ry="5"/>
-
                 <path class="honeybee-leg" d="M113 135 Q105 150 93 151"/>
                 <path class="honeybee-leg" d="M154 139 Q165 153 178 154"/>
-
                 <path class="honeybee-antenna" d="M44 52 Q31 24 21 20"/>
                 <circle class="honeybee-antenna-tip" cx="19" cy="18" r="5"/>
                 <path class="honeybee-antenna" d="M70 51 Q73 25 84 20"/>
@@ -44,10 +40,10 @@
         document.body.appendChild(bee);
 
         const state = {
-            x: Math.max(25, window.innerWidth - 250),
-            y: Math.max(70, window.innerHeight - 260),
-            tx: Math.max(25, window.innerWidth - 250),
-            ty: Math.max(70, window.innerHeight - 260),
+            x: Math.max(18, window.innerWidth - 220),
+            y: Math.max(80, window.innerHeight - 220),
+            tx: Math.max(18, window.innerWidth - 220),
+            ty: Math.max(80, window.innerHeight - 220),
             t: 0,
             angle: 0
         };
@@ -63,14 +59,21 @@
             setTimeout(() => node.remove(), 900);
         }
 
-        function retarget() {
-            state.tx = 30 + Math.random() * (window.innerWidth - 220);
-            state.ty = 75 + Math.random() * (window.innerHeight - 260);
+        function applyPosition() {
+            bee.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${state.angle}deg)`;
         }
 
-        gsap.ticker.add(() => {
+        function retarget() {
+            state.tx = 25 + Math.random() * Math.max(60, window.innerWidth - 210);
+            state.ty = 82 + Math.random() * Math.max(60, window.innerHeight - 260);
+        }
+
+        function tick() {
             state.t += 0.016;
-            if (Math.abs(state.tx - state.x) < 22 && Math.abs(state.ty - state.y) < 22) retarget();
+
+            if (Math.abs(state.tx - state.x) < 20 && Math.abs(state.ty - state.y) < 20) {
+                retarget();
+            }
 
             const ox = Math.sin(state.t * 1.7) * 13;
             const oy = Math.cos(state.t * 2.3) * 9;
@@ -79,11 +82,19 @@
             state.y += (state.ty + oy - state.y) * 0.07;
             state.angle += ((ox * 0.3) - state.angle) * 0.15;
 
-            bee.style.transform = `translate3d(${state.x}px, ${state.y}px, 0) rotate(${state.angle}deg)`;
+            applyPosition();
             bee.style.setProperty('--wing-flutter', `${Math.sin(state.t * 38) * 11}deg`);
 
             if (Math.random() < 0.04) emitSparkle(state.x + 34, state.y + 44);
-        });
+        }
+
+        function animateWithRaf() {
+            function loop() {
+                tick();
+                window.requestAnimationFrame(loop);
+            }
+            window.requestAnimationFrame(loop);
+        }
 
         bee.addEventListener('mouseenter', () => {
             emitSparkle(state.x + 28, state.y + 28);
@@ -97,15 +108,26 @@
         });
 
         window.addEventListener('resize', retarget);
+
+        if (prefersReducedMotion) {
+            state.x = Math.max(18, window.innerWidth - 220);
+            state.y = Math.max(80, window.innerHeight - 220);
+            applyPosition();
+            return;
+        }
+
         retarget();
+
+        if (window.gsap?.ticker) {
+            window.gsap.ticker.add(tick);
+        } else {
+            animateWithRaf();
+        }
     }
 
-    if (window.gsap) {
-        startBeeAssistant();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startBeeAssistant, { once: true });
     } else {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js';
-        script.onload = startBeeAssistant;
-        document.head.appendChild(script);
+        startBeeAssistant();
     }
 })();
