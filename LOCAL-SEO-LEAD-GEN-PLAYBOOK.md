@@ -43,6 +43,15 @@
 </p>
 ```
 
+
+### Dhanu Computers keyword cluster (brand SEO)
+- Primary brand-intent keywords to place in title/H1 and first paragraph:
+  - `Dhanu Computers in Puttur Karnataka`
+  - `Dhanu Computers laptop service in Puttur`
+  - `Dhanu Computers near me`
+- Add dedicated page: `/dhanu-computers-puttur-karnataka.html`
+- Use `Dhanu Computers` as `alternateName` in LocalBusiness schema to capture branded queries.
+
 ### Local landing page strategy
 Create geo-intent landing pages:
 - `/luminous-inverter-dealer-puttur.html`
