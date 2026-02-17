@@ -1,12 +1,69 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Dhanu Computers logo">
-  <title>Dhanu Computers Logo</title>
-  <!-- Canonical source provided by client -->
-  <image
-    href="https://drive.google.com/uc?export=view&id=1k2vaQcuPWD67zYqlGSBy5nz60YwNble3"
-    x="0"
-    y="0"
-    width="1024"
-    height="1024"
-    preserveAspectRatio="xMidYMid meet"
-  />
+  <defs>
+    <linearGradient id="orangeRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9a126"/>
+      <stop offset="100%" stop-color="#f07d00"/>
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d81e10"/>
+      <stop offset="100%" stop-color="#c71512"/>
+    </linearGradient>
+    <path id="topArc" d="M126 512 A386 386 0 0 1 898 512"/>
+    <path id="bottomArc" d="M898 512 A386 386 0 0 1 126 512"/>
+  </defs>
+
+  <!-- Transparent background by design -->
+
+  <!-- Outer ring -->
+  <circle cx="512" cy="512" r="322" fill="none" stroke="url(#orangeRing)" stroke-width="28"/>
+
+  <!-- Curved brand text -->
+  <g fill="#d62111" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" letter-spacing="3.5">
+    <text font-size="88">
+      <textPath href="#topArc" startOffset="50%" text-anchor="middle">DHANU COMPUTERS</textPath>
+    </text>
+    <text font-size="58" letter-spacing="5">
+      <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">ONE STEP FOR DIGITAL LIFE</textPath>
+    </text>
+  </g>
+
+  <!-- Computer body -->
+  <g fill="url(#redGrad)">
+    <rect x="278" y="352" width="448" height="294" rx="24"/>
+    <rect x="318" y="392" width="368" height="186" rx="10" fill="white"/>
+    <rect x="430" y="644" width="164" height="56" rx="28"/>
+    <path d="M364 700h296c45 0 83 28 95 67H269c12-39 50-67 95-67z"/>
+  </g>
+
+  <!-- Wifi icon -->
+  <g fill="none" stroke="#f4931f" stroke-width="12" stroke-linecap="round">
+    <path d="M246 456c46-42 94-42 140 0"/>
+    <path d="M264 486c34-30 70-30 104 0"/>
+    <path d="M282 514c22-18 44-18 66 0"/>
+  </g>
+  <circle cx="315" cy="540" r="8" fill="#f4931f"/>
+
+  <!-- Bow and arrow -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M574 306c72 28 136 27 186-10" stroke="#f4931f" stroke-width="14"/>
+    <path d="M688 347c100 8 149 106 98 191" stroke="url(#redGrad)" stroke-width="34"/>
+    <path d="M784 538c66 62 52 192-4 256" stroke="url(#redGrad)" stroke-width="30"/>
+    <path d="M719 404c28-16 55-9 73 18" stroke="#fff" stroke-width="4"/>
+    <path d="M726 416c28-16 56-9 75 18" stroke="#fff" stroke-width="4"/>
+    <path d="M733 428c28-16 56-9 75 18" stroke="#fff" stroke-width="4"/>
+    <path d="M760 562c22-14 44-9 60 11" stroke="#fff" stroke-width="4"/>
+    <path d="M767 575c22-14 45-9 61 11" stroke="#fff" stroke-width="4"/>
+    <path d="M773 588c22-14 45-9 62 11" stroke="#fff" stroke-width="4"/>
+
+    <line x1="416" y1="307" x2="778" y2="758" stroke="#f4931f" stroke-width="5"/>
+    <line x1="416" y1="307" x2="518" y2="596" stroke="#f4931f" stroke-width="5"/>
+    <line x1="518" y1="596" x2="758" y2="410" stroke="#f4931f" stroke-width="5"/>
+    <line x1="518" y1="596" x2="474" y2="588" stroke="#f4931f" stroke-width="5"/>
+    <line x1="518" y1="596" x2="511" y2="635" stroke="#f4931f" stroke-width="5"/>
+  </g>
+  <polygon points="758,410 787,398 767,424" fill="none" stroke="#f4931f" stroke-width="4"/>
+  <polygon points="474,588 450,604 494,606" fill="none" stroke="#f4931f" stroke-width="4"/>
+  <polygon points="511,635 494,654 540,619" fill="none" stroke="#f4931f" stroke-width="4"/>
+
+  <text x="512" y="772" text-anchor="middle" fill="#d62111" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="500">since 2013</text>
 </svg>

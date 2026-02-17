@@ -1,9 +1,9 @@
 # Dhanu Computers Logo Assets
 
 ## Master files (text only)
-- `dhanutech-logo.svg` → canonical main logo source.
-- `dhanutech-symbol.svg` → simplified symbol used for favicon links.
+- `dhanutech-logo.svg` → main logo matching the approved Dhanu Computers circular design.
+- `dhanutech-symbol.svg` → simplified transparent symbol used for favicon links.
 
 ## Notes
-- Binary logo/favicon exports (`.png`, `.ico`) were removed from the repository.
-- All pages now use SVG favicon links to avoid binary-file issues in Git diffs.
+- Background is transparent in both SVG assets.
+- Binary favicon/logo exports (`.png`, `.ico`) are intentionally not tracked.
