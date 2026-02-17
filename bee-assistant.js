@@ -280,7 +280,7 @@
     }
 
     function updateAudio() {
-        if (!buzzGain) return;
+        if (!audioCtx || !buzzGain) return;
         const target = state.muted || state.hidden ? 0 : 0.007;
         buzzGain.gain.value += (target - buzzGain.gain.value) * 0.08;
         if (buzzOsc) {

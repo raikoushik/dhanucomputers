@@ -5,7 +5,8 @@ from pathlib import Path
 import struct
 from playwright.sync_api import sync_playwright
 
-root = Path(__file__).parent
+# Script is in scripts/ directory, logo files are in assets/logo/
+root = Path(__file__).parent.parent / "assets" / "logo"
 
 with sync_playwright() as p:
     browser = p.firefox.launch()
