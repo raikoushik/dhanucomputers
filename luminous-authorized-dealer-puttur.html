@@ -87,6 +87,13 @@
       <p id="calcResult" aria-live="polite"></p>
     </section>
 
+
+    <section class="card" id="aiInsightsCard">
+      <h2>AI Insight (Gemini)</h2>
+      <p id="aiInsightText" aria-live="polite">Loading latest insight…</p>
+      <p style="font-size:.9rem;color:#475569;margin-top:.6rem;">Insights are pulled from your Google Sheet Gemini output.</p>
+    </section>
+
     <section class="card emergency">
       <p><strong>Emergency power failure in Puttur?</strong></p>
       <a href="tel:+919591555095">Call Emergency Team</a>
@@ -110,17 +117,74 @@
   </div>
 
   <script defer>
+    const GEMINI_SHEET_CSV_URL = window.GEMINI_SHEET_CSV_URL || '';
+
     document.getElementById('callbackForm')?.addEventListener('submit', function (e) {
       e.preventDefault();
       const data = new FormData(e.target);
       const msg = `Callback Request%0AName: ${encodeURIComponent(data.get('name'))}%0APhone: ${encodeURIComponent(data.get('phone'))}%0AService: ${encodeURIComponent(data.get('service'))}`;
       window.open(`https://wa.me/919591555095?text=${msg}`, '_blank', 'noopener');
     });
+
     function calculateBackup(){
       const watts = Number(document.getElementById('loadWatts').value || 0);
       const recommendedVA = Math.ceil((watts / 0.8) / 100) * 100;
       document.getElementById('calcResult').textContent = watts > 0 ? `Recommended inverter capacity: ${recommendedVA} VA.` : 'Please enter valid watts.';
     }
+
+    function parseCsvLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        if (char === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      return result;
+    }
+
+    async function loadGeminiInsight() {
+      const insightNode = document.getElementById('aiInsightText');
+      if (!insightNode) return;
+      if (!GEMINI_SHEET_CSV_URL) {
+        insightNode.textContent = 'Set window.GEMINI_SHEET_CSV_URL with your published Google Sheet CSV URL to show Gemini insights.';
+        return;
+      }
+
+      try {
+        const response = await fetch(GEMINI_SHEET_CSV_URL, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Sheet fetch failed (${response.status})`);
+
+        const csv = await response.text();
+        const rows = csv.split(/\r?\n/).filter(Boolean).map(parseCsvLine);
+        if (rows.length < 2) throw new Error('No data rows found in Google Sheet');
+
+        const header = rows[0].map((h) => h.toLowerCase());
+        const insightIndex = header.findIndex((h) => h.includes('insight') || h.includes('gemini') || h.includes('ai'));
+        const latest = rows[rows.length - 1];
+        const insight = insightIndex >= 0 ? latest[insightIndex] : latest[latest.length - 1];
+
+        insightNode.textContent = insight ? insight : 'No Gemini insight found in the latest row.';
+      } catch (error) {
+        insightNode.textContent = 'Unable to load Gemini insight right now. Please verify Sheet publish settings and URL.';
+        console.error(error);
+      }
+    }
+
+    loadGeminiInsight();
   </script>
 
   <script type="application/ld+json">
